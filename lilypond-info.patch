@@ -155,13 +155,13 @@
 -* abc2ly: (lilypond/lilypond)Invoking abc2ly.          Importing ABC.          
 -* musedata2ly: (lilypond/lilypond)Invoking musedata2ly.        Importing MuseData.
 -* mup2ly: (lilypond/lilypond)Invoking mup2ly.          Importing Mup. 
-+* GNU LilyPond: (lilypond/lilypond).	The GNU music typesetter
-+* convert-ly: (lilypond/lilypond)convert-ly.  Older LilyPond versions
-+* midi2ly: (lilypond/lilypond)midi2ly.	Importing MIDI
-+* etf2ly: (lilypond/lilypond)etf2ly.	Importing Finale
-+* abc2ly: (lilypond/lilypond)abc2ly.	Importing ABC
-+* musedata2ly: (lilypond/lilypond)musedata2ly.  Importing MuseData
-+* mup2ly: (lilypond/lilypond)mup2ly.	Importing Mup
++* GNU LilyPond: (lilypond).		The GNU music typesetter
++* convert-ly: (lilypond)convert-ly.	Older LilyPond versions
++* midi2ly: (lilypond)midi2ly.		Importing MIDI
++* etf2ly: (lilypond)etf2ly.		Importing Finale
++* abc2ly: (lilypond)abc2ly.		Importing ABC
++* musedata2ly: (lilypond)musedata2ly.	Importing MuseData
++* mup2ly: (lilypond)mup2ly.		Importing Mup
  @end direntry
  
  
@@ -241,7 +241,7 @@
 +@dircategory Miscellaneous:
  @direntry
 -* Glossary: (lilypond/music-glossary).                  Glossary of music terms.
-+* Glossary: (lilypond/music-glossary).	Glossary of music terms
++* Glossary: (music-glossary).		Glossary of music terms
  @end direntry
  
  @ifhtml
