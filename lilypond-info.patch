@@ -1,0 +1,30 @@
+--- lilypond-1.4.13/Documentation/user/lilypond.tely.orig	Fri May 11 15:29:05 2001
++++ lilypond-1.4.13/Documentation/user/lilypond.tely	Sat Nov  2 13:07:49 2002
+@@ -3,10 +3,10 @@
+ @settitle GNU LilyPond
+ 
+ 
+-@dircategory GNU music project
++@dircategory Miscellaneous:
+ @direntry
+ @c    ;; prepend GNU for dir, must be unique
+-* GNU LilyPond: (lilypond).          The GNU music typesetter.
++* GNU LilyPond: (lilypond).		The GNU music typesetter
+ @c * install-info: (texinfo)Invoking install-info. Update info/dir entries.
+ @c * texi2dvi: (texinfo)Format with texi2dvi.      Print Texinfo documents.
+ @end direntry
+--- lilypond-1.4.13/scm/documentation-lib.scm.orig	Fri Apr  6 18:06:46 2001
++++ lilypond-1.4.13/scm/documentation-lib.scm	Sat Nov  2 13:13:40 2002
+@@ -108,10 +108,10 @@
+    "\\input texinfo @c -*-texinfo-*-"
+    "\n@setfilename " file-name ".info"
+    "\n@settitle " name
+-   "\n@dircategory GNU music project"
++   "\n@dircategory Miscellaneous:"
+    "\n@direntry"
+    ;; prepend GNU for dir, must be unique
+-   "\n* GNU " name ": (" file-name ").          " name "."
++   "\n* GNU " name ": (" file-name ").  " name
+    "\n@end direntry"
+    ;; ugh, prev and next should be settable, of course
+    (node "Top") ",(lilypond)Index,(lilypond)Full Grob interface list," top
