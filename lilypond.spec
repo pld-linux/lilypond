@@ -1,14 +1,19 @@
 Summary:	Music typesetter
 Summary(pl):	Program do sk³adania nut
 Name:		lilypond
-Version:	1.6.0
+Version:	1.6.11
 Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.gnu.org/gnu/lilypond/%{name}-%{version}.tar.gz
-# Source0-md5:	6408500246655cc4a0d74fbcf3f66f0c
+# Source0-md5:	e06e05046c0741cdce090c9eaae5102a
 Patch0:		%{name}-info.patch
+Patch1:		%{name}-gcc33.patch
+Patch2:		%{name}-python23.patch
+Patch3:		%{name}-acfix.patch
 URL:		http://www.cs.uu.nl/people/hanwen/lilypond/index.html
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	guile-devel
@@ -40,16 +45,28 @@ wszystkim oprogramowania do publikacji muzycznych.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+
+cp -f stepmake/aclocal.m4 .
+cp -f /usr/share/automake/{config.*,install-sh} .
 
 %build
-%configure2_13
-%{__make}
+%{__autoconf}
+cd stepmake
+%{__autoconf}
+cd ..
+%configure
+%{__make} \
+	builddir="`pwd`"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{texfontsdir}/{afm,source,tfm}
 
 %{__make} install \
+	builddir="`pwd`" \
 	local_lilypond_datadir=$RPM_BUILD_ROOT%{_datadir}/lilypond/%{version} \
 	datadir=$RPM_BUILD_ROOT%{_datadir} \
 	mandir=$RPM_BUILD_ROOT%{_mandir} \
@@ -76,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS.txt CHANGES DEDICATION NEWS README.txt
+%doc AUTHORS.txt ChangeLog DEDICATION NEWS README.txt THANKS
 %attr(755,root,root) %{_bindir}/*
 %dir %{_datadir}/lilypond
 %dir %{_datadir}/lilypond/%{version}

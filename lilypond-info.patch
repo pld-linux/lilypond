@@ -1,5 +1,5 @@
---- lilypond-1.6.0/Documentation/user/lilypond.tely.orig	Mon Aug 19 03:55:44 2002
-+++ lilypond-1.6.0/Documentation/user/lilypond.tely	Wed Apr  2 00:33:09 2003
+--- lilypond-1.6.11/Documentation/user/lilypond.tely.orig	2002-09-28 19:34:20.000000000 +0200
++++ lilypond-1.6.11/Documentation/user/lilypond.tely	2003-08-24 16:09:34.196923912 +0200
 @@ -12,20 +12,18 @@
      ./install-info --info-dir=/usr/share/info out/lilypond.info
      
@@ -10,8 +10,8 @@
  @c    ;; prepend GNU for dir, must be unique
 -* GNU LilyPond: (lilypond).                    The GNU music typesetter.
 -* ly2dvi: (lilypond)Invoking ly2dvi::          Titling LilyPond scores.
--* convert-ly: (lilypond)Invoking convert-ly::
--                                               Older LilyPond versions.
+-* Glossary: (music-glossary).                  Glossary of music terms.
+-* convert-ly: (lilypond)Invoking convert-ly::  Older LilyPond versions.
 -* midi2ly: (lilypond)Invoking midi2ly::        Importing MIDI.
 -* etf2ly: (lilypond)Invoking etf2ly::          Importing Finale.
 -* abc2ly: (lilypond)Invoking abc2ly::          Importing ABC.          
@@ -31,7 +31,7 @@
  @end direntry
  
  
-@@ -90,7 +88,7 @@
+@@ -92,7 +90,7 @@
  * Tutorial::                       A tutorial introduction to LilyPond.
  * Reference Manual::               Reference Manual.
  * Advanced Topics::                How it all works.

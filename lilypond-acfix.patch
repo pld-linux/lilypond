@@ -1,0 +1,59 @@
+--- lilypond-1.6.11/configure.in.orig	2003-08-24 16:37:26.000000000 +0200
++++ lilypond-1.6.11/configure.in	2003-08-24 16:38:01.489376008 +0200
+@@ -3,8 +3,10 @@
+ 
+ # Bootstrap the init proces.  List a file identifies your package.
+ AC_INIT(make/lilypond.lsm.in)
++CONFIGFILE=config
+ AC_CONFIG_HEADER($CONFIGFILE.h:config.hh.in)
+ 
++AC_CANONICAL_HOST
+ # Bootstrap StepMake configure
+ STEPMAKE_INIT
+ 
+@@ -42,8 +42,9 @@
+ 
+ AC_FUNC_MEMCMP
+ AC_FUNC_VPRINTF
++AC_LANG_PUSH(C)
+ AC_CHECK_FUNCS(memmem snprintf vsnprintf gettext isinf)
+-
++AC_LANG_POP
+ 
+ ## Optional tools for building documentation, website, extra fonts.
+ 
+--- lilypond-1.6.11/stepmake/configure.in.orig	2002-08-09 14:39:27.000000000 +0200
++++ lilypond-1.6.11/stepmake/configure.in	2003-08-24 16:41:07.044167392 +0200
+@@ -3,8 +3,10 @@
+ 
+ # Bootstrap the init proces.  List a file identifies your package.
+ AC_INIT(make/stepmake.lsm.in)
++CONFIGFILE=config
+ AC_CONFIG_HEADER($CONFIGFILE.h:config.hh.in)
+ 
++AC_CANONICAL_HOST
+ # Bootstrap StepMake configure
+ STEPMAKE_INIT
+ 
+--- lilypond-1.6.11/stepmake/aclocal.m4.orig	2003-08-24 16:59:28.000000000 +0200
++++ lilypond-1.6.11/stepmake/aclocal.m4	2003-08-24 17:04:34.078265696 +0200
+@@ -389,8 +389,10 @@
+     
+     AC_SUBST(localedir)
+     AC_DEFINE_UNQUOTED(LOCALEDIR, "${LOCALEDIR}")
++    AC_LANG_PUSH(C)
+     AC_CHECK_LIB(intl, gettext)
+     AC_CHECK_FUNCS(gettext)
++    AC_LANG_POP
+ ])
+ 
+ 
+--- lilypond-1.6.11/lily/GNUmakefile.orig	2003-03-11 20:10:36.000000000 +0100
++++ lilypond-1.6.11/lily/GNUmakefile	2003-08-24 19:11:09.919522304 +0200
+@@ -34,6 +34,4 @@
+ 
+ # ugh.  For --srcdir builds, these must exist to satisfy their broken
+ # lexer.dep and parser.dep file entries.
+-ifneq ($(srcdir), .)
+ .PRECIOUS: $(outdir)/lexer.cc $(outdir)/parser.cc
+-endif
