@@ -24,6 +24,8 @@ BuildRequires:	texinfo
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-fonts-cm
 BuildConflicts:	lilypond < 1.6.0
+Requires:	tetex-format-latex
+Requires:	ghostscript
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_localedir	%{_prefix}/share/locale
