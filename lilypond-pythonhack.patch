@@ -1,0 +1,20 @@
+--- lilypond-1.4.13/scripts/lilypond-book.py.orig	Thu May  2 12:11:47 2002
++++ lilypond-1.4.13/scripts/lilypond-book.py	Sun Jul 14 23:25:15 2002
+@@ -60,6 +60,8 @@
+ except ImportError:
+ 	import re
+ 
++import sre
++
+ program_version = '@TOPLEVEL_VERSION@'
+ if program_version == '@' + 'TOPLEVEL_VERSION' + '@':
+ 	program_version = '1.4.12'
+@@ -485,7 +487,7 @@
+ 
+ def output_verbatim (body):
+ 	if __main__.format == 'texi':
+-		body = re.sub ('([@{}])', '@\\1', body)
++		body = sre.sub ('([@{}])', '@\\1', body)
+ 	return get_output ('output-verbatim') % body
+ 
+ 
