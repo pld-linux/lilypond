@@ -2,11 +2,12 @@ Summary:	Music typesetter
 Summary(pl):	Program do sk³adania nut
 Name:		lilypond
 Version:	1.4.13
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.gnu.org/gnu/lilypond/%{name}-%{version}.tar.gz
 Patch0:		%{name}-pythonhack.patch
+Patch1:		%{name}-gcc3.patch
 URL:		http://www.cs.uu.nl/people/hanwen/lilypond/index.html
 BuildRequires:	bison
 BuildRequires:	flex
@@ -36,7 +37,8 @@ wszystkim oprogramowania do publikacji muzycznych.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 %configure2_13
