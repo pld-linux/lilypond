@@ -1,25 +1,26 @@
 Summary:	Music typesetter
 Summary(pl):	Program do sk³adania nut
 Name:		lilypond
-Version:	2.4.0
+Version:	2.4.1
 Release:	0.1
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://lilypond.org/download/v2.4/%{name}-%{version}.tar.gz
-# Source0-md5:	0e289d69c673382eef0a0c04186601bc
+# Source0-md5:	5fdb447c9a55c52c670c80f09bddcecf
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 Patch2:		%{name}-po.patch
+Patch3:		%{name}-ps2png.patch
 URL:		http://www.lilypond.org/
 BuildRequires:	automake
 BuildRequires:	bison >= 1.25
-BuildRequires:	flex
+BuildRequires:	flex >= 2.5.4a
 BuildRequires:	fontforge
 BuildRequires:	gettext-devel
 BuildRequires:	guile-devel >= 1.6
 BuildRequires:	kpathsea-devel
 BuildRequires:	libltdl-devel
-BuildRequires:	libstdc++-devel >= 5:3.0
+BuildRequires:	libstdc++-devel >= 5:3.1
 BuildRequires:	mftrace >= 1.0.17
 BuildRequires:	python-devel >= 2.1
 BuildRequires:	tetex-dvips
@@ -28,8 +29,10 @@ BuildRequires:	tetex-fonts-cmextra
 BuildRequires:	tetex-fonts-jknappen
 BuildRequires:	texinfo >= 4.6
 BuildConflicts:	lilypond < 1.6.0
-Requires:	tetex-format-latex
 Requires:	ghostscript
+Requires:	guile >= 1.6
+Requires:	python >= 2.1
+Requires:	tetex-format-latex >= 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_localedir	%{_prefix}/share/locale
@@ -67,6 +70,7 @@ Tryb edycji plików LilyPond dla Emacsa.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 cp -f /usr/share/automake/config.* stepmake/bin
@@ -97,6 +101,9 @@ mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/type1 \
       $RPM_BUILD_ROOT%{texfontsdir}/type1/lilypond
 
 mv -f $RPM_BUILD_ROOT%{_infodir}/lilypond/*.info* $RPM_BUILD_ROOT%{_infodir}
+
+# to avoid conflict with tth (call in lily.scm changed by -ps2png.patch)
+mv -f $RPM_BUILD_ROOT%{_bindir}/{ps2png,lilypond-ps2png}
 
 %find_lang %{name}
 
