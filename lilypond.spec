@@ -1,12 +1,12 @@
 Summary:	Music typesetter
 Summary(pl):	Program do sk³adania nut
 Name:		lilypond
-Version:	1.9.9
+Version:	2.0.0
 Release:	1
 License:	GPL
 Group:		Applications/Sound
-Source0:	ftp://ftp.lilypond.org/pub/LilyPond/v1.9/%{name}-%{version}.tar.gz
-# Source0-md5:	7d3e66c490216e3971da0436424fbb0d
+Source0:	ftp://ftp.lilypond.org/pub/LilyPond/v2.0/%{name}-%{version}.tar.gz
+# Source0-md5:	80faf9f9abc4ecf72a71ba0036cdfee0
 URL:		http://www.lilypond.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -61,7 +61,7 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{texfontsdir}/{afm,source,tfm}
+install -d $RPM_BUILD_ROOT%{texfontsdir}/{source,tfm,type1}
 install -d $RPM_BUILD_ROOT/etc/profile.d
 
 %{__make} install \
@@ -80,10 +80,12 @@ install buildscripts/out/lilypond-login \
 
 perl -pi -e "s#$RPM_BUILD_ROOT##" $RPM_BUILD_ROOT%{_bindir}/*
 
-mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/afm $RPM_BUILD_ROOT%{texfontsdir}/afm/lilypond
-mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/source $RPM_BUILD_ROOT%{texfontsdir}/source/lilypond
-mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/tfm
-$RPM_BUILD_ROOT%{texfontsdir}/tfm/lilypond
+mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/source \ 
+	$RPM_BUILD_ROOT%{texfontsdir}/source/lilypond
+mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/tfm \
+	$RPM_BUILD_ROOT%{texfontsdir}/tfm/lilypond
+mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/type1 \
+	$RPM_BUILD_ROOT%{texfontsdir}/type1/lilypond
 
 %find_lang %{name}
 
