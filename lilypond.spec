@@ -7,24 +7,23 @@ License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.lilypond.org/pub/LilyPond/v2.0/%{name}-%{version}.tar.gz
 # Source0-md5:	80faf9f9abc4ecf72a71ba0036cdfee0
+Patch0:		%{name}-info.patch
+Patch1:		%{name}-sh.patch
 URL:		http://www.lilypond.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	bison
+BuildRequires:	bison >= 1.25
 BuildRequires:	flex
 BuildRequires:	gettext-devel
-BuildRequires:	guile-devel
+BuildRequires:	guile-devel >= 1.6
 BuildRequires:	kpathsea-devel
-BuildRequires:	mftrace
-BuildRequires:	autotrace >= 0.30
 BuildRequires:	libltdl-devel
-BuildRequires:	libstdc++-devel
-BuildRequires:	python-devel
-BuildRequires:	texinfo
+BuildRequires:	libstdc++-devel >= 5:3.0
+BuildRequires:	mftrace >= 1.0.17
+BuildRequires:	python-devel >= 2.1
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-fonts-cm
 BuildRequires:	tetex-fonts-cmextra
 BuildRequires:	tetex-fonts-jknappen
+BuildRequires:	texinfo >= 4.6
 BuildConflicts:	lilypond < 1.6.0
 Requires:	tetex-format-latex
 Requires:	ghostscript
@@ -49,21 +48,15 @@ wszystkim oprogramowania do publikacji muzycznych.
 
 %prep
 %setup -q
-
-cp -f stepmake/aclocal.m4 .
-cp -f /usr/share/automake/{config.*,install-sh} .
+%patch0 -p1
+%patch1 -p1
 
 %build
-%{__autoconf}
-cd stepmake
-%{__autoconf}
-cd ..
 %configure
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/etc/profile.d
 install -d $RPM_BUILD_ROOT%{texfontsdir}/{source,tfm,type1}
 
 %{__make} install \
@@ -75,7 +68,7 @@ install -d $RPM_BUILD_ROOT%{texfontsdir}/{source,tfm,type1}
 	infodir=$RPM_BUILD_ROOT%{_infodir} \
 	libdir=$RPM_BUILD_ROOT%{_libdir}
 
-perl -pi -e "s#$RPM_BUILD_ROOT##" $RPM_BUILD_ROOT%{_bindir}/*
+%{__perl} -pi -e "s#$RPM_BUILD_ROOT##" $RPM_BUILD_ROOT%{_bindir}/*
 
 mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/source \
       $RPM_BUILD_ROOT%{texfontsdir}/source/lilypond
@@ -100,32 +93,28 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS.txt ChangeLog DEDICATION NEWS.txt README.txt THANKS
-
 %attr(755,root,root) %{_bindir}/*
+%dir %{_libdir}/lilypond
+%dir %{_libdir}/lilypond/%{version}
+%dir %{_libdir}/lilypond/%{version}/python
+%attr(755,root,root) %{_libdir}/lilypond/%{version}/python/midi.so
 %dir %{_datadir}/lilypond
 %dir %{_datadir}/lilypond/%{version}
-%attr(755,root,root) /etc/profile.d/*
 %{_datadir}/lilypond/%{version}/ly
 %{_datadir}/lilypond/%{version}/ps
 %dir %{_datadir}/lilypond/%{version}/python
 %{_datadir}/lilypond/%{version}/python/*.py
 %{_datadir}/lilypond/%{version}/python/*.pyc
-%dir %{_libdir}/lilypond/%{version}/python
-%attr(755,root,root) %{_libdir}/lilypond/%{version}/python/midi.so
+%{_datadir}/lilypond/%{version}/dvips
 %{_datadir}/lilypond/%{version}/fonts
 %{_datadir}/lilypond/%{version}/scm
 %{_datadir}/lilypond/%{version}/tex
 %{_infodir}/*.info*
 %{_mandir}/man1/*
 
-%dir %{_datadir}/lilypond/%{version}/dvips/
-%{_datadir}/lilypond/%{version}/dvips/*
-%dir %{_datadir}/lilypond/%{version}/make/
-%{_datadir}/lilypond/%{version}/make/*
+#%{_datadir}/lilypond/%{version}/make
 
 %{_datadir}/emacs/site-lisp/*
 %{texfontsdir}/*/lilypond
 
-
-%dir %{_datadir}/omf/lilypond/%{version}/
-%{_datadir}/omf/lilypond/%{version}/*
+%{_datadir}/omf/lilypond
