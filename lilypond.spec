@@ -2,13 +2,14 @@ Summary:	Music typesetter
 Summary(pl):	Program do sk³adania nut
 Name:		lilypond
 Version:	2.2.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://lilypond.org/download/v2.2/%{name}-%{version}.tar.gz
 # Source0-md5:	2f96e5ca3ae6943ed22a28a0b35927fd
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
+Patch2:		%{name}-po.patch
 URL:		http://www.lilypond.org/
 BuildRequires:	automake
 BuildRequires:	bison >= 1.25
@@ -65,6 +66,7 @@ Tryb edycji plików LilyPond dla Emacsa.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 cp -f /usr/share/automake/config.* stepmake/bin
