@@ -1,0 +1,11 @@
+--- lilypond-2.4.1/scm/lily.scm.orig	2004-11-04 17:46:44.000000000 +0100
++++ lilypond-2.4.1/scm/lily.scm	2004-11-05 20:44:47.863570344 +0100
+@@ -581,7 +581,7 @@
+ (define-public (postscript->png resolution name)
+   (let
+       ((cmd (string-append
+-	   "ps2png --resolution="
++	   "lilypond-ps2png --resolution="
+ 	   (if (number? resolution)
+ 	       (number->string resolution)
+ 	       "90 ")
