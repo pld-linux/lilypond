@@ -1,27 +1,28 @@
 Summary:	Music typesetter
 Summary(pl):	Program do sk³adania nut
 Name:		lilypond
-Version:	1.6.11
+Version:	1.9.9
 Release:	1
 License:	GPL
 Group:		Applications/Sound
-Source0:	ftp://ftp.gnu.org/gnu/lilypond/%{name}-%{version}.tar.gz
-# Source0-md5:	e06e05046c0741cdce090c9eaae5102a
-Patch0:		%{name}-info.patch
-Patch1:		%{name}-gcc33.patch
-Patch2:		%{name}-python23.patch
-Patch3:		%{name}-acfix.patch
-URL:		http://www.cs.uu.nl/people/hanwen/lilypond/index.html
+Source0:	ftp://ftp.lilypond.org/pub/LilyPond/v1.9/%{name}-%{version}.tar.gz
+# Source0-md5:	7d3e66c490216e3971da0436424fbb0d
+URL:		http://www.lilypond.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
+BuildRequires:	gettext-devel
 BuildRequires:	guile-devel
 BuildRequires:	kpathsea-devel
+BuildRequires:	mftrace
+BuildRequires:	autotrace >= 0.30
 BuildRequires:	libltdl-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	python-devel
 BuildRequires:	texinfo
+BuildRequires:	tetex-dvips
+BuildRequires:	tetex-fonts-cm
 BuildConflicts:	lilypond < 1.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -44,10 +45,6 @@ wszystkim oprogramowania do publikacji muzycznych.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
 
 cp -f stepmake/aclocal.m4 .
 cp -f /usr/share/automake/{config.*,install-sh} .
@@ -58,25 +55,33 @@ cd stepmake
 %{__autoconf}
 cd ..
 %configure
-%{__make} \
-	builddir="`pwd`"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{texfontsdir}/{afm,source,tfm}
+install -d $RPM_BUILD_ROOT/etc/profile.d
 
 %{__make} install \
-	builddir="`pwd`" \
 	local_lilypond_datadir=$RPM_BUILD_ROOT%{_datadir}/lilypond/%{version} \
 	datadir=$RPM_BUILD_ROOT%{_datadir} \
 	mandir=$RPM_BUILD_ROOT%{_mandir} \
 	bindir=$RPM_BUILD_ROOT%{_bindir} \
 	localedir=$RPM_BUILD_ROOT%{_localedir} \
-	infodir=$RPM_BUILD_ROOT%{_infodir}
+	infodir=$RPM_BUILD_ROOT%{_infodir} \
+	libdir=$RPM_BUILD_ROOT%{_libdir}
+
+install buildscripts/out/lilypond-profile \
+	$RPM_BUILD_ROOT/etc/profile.d/lilypond.sh
+install buildscripts/out/lilypond-login \
+	$RPM_BUILD_ROOT/etc/profile.d/lilypond.csh
+
+perl -pi -e "s#$RPM_BUILD_ROOT##" $RPM_BUILD_ROOT%{_bindir}/*
 
 mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/afm $RPM_BUILD_ROOT%{texfontsdir}/afm/lilypond
 mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/source $RPM_BUILD_ROOT%{texfontsdir}/source/lilypond
-mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/tfm $RPM_BUILD_ROOT%{texfontsdir}/tfm/lilypond
+mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/tfm
+$RPM_BUILD_ROOT%{texfontsdir}/tfm/lilypond
 
 %find_lang %{name}
 
@@ -93,16 +98,31 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS.txt ChangeLog DEDICATION NEWS README.txt THANKS
+%doc AUTHORS.txt ChangeLog DEDICATION NEWS.txt README.txt THANKS
+
 %attr(755,root,root) %{_bindir}/*
 %dir %{_datadir}/lilypond
 %dir %{_datadir}/lilypond/%{version}
+%attr(755,root,root) /etc/profile.d/*
 %{_datadir}/lilypond/%{version}/ly
 %{_datadir}/lilypond/%{version}/ps
 %dir %{_datadir}/lilypond/%{version}/python
-%attr(755,root,root) %{_datadir}/lilypond/%{version}/python/midi.so
+%{_datadir}/lilypond/%{version}/python/*.py
+%{_datadir}/lilypond/%{version}/python/*.pyc
+%dir %{_libdir}/lilypond/%{version}/python
+%attr(755,root,root) %{_libdir}/lilypond/%{version}/python/midi.so
 %{_datadir}/lilypond/%{version}/scm
 %{_datadir}/lilypond/%{version}/tex
 %{texfontsdir}/*/lilypond
 %{_infodir}/*.info*
 %{_mandir}/man1/*
+
+%dir %{_datadir}/lilypond/%{version}/dvips/
+%{_datadir}/lilypond/%{version}/dvips/*
+%dir %{_datadir}/lilypond/%{version}/fonts/type1/
+%{_datadir}/lilypond/%{version}/fonts/type1/*
+%dir %{_datadir}/lilypond/%{version}/make/
+%{_datadir}/lilypond/%{version}/make/*
+
+%dir %{_datadir}/omf/lilypond/%{version}/
+%{_datadir}/omf/lilypond/%{version}/*
