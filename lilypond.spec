@@ -75,11 +75,6 @@ install -d $RPM_BUILD_ROOT%{texfontsdir}/{source,tfm,type1}
 	infodir=$RPM_BUILD_ROOT%{_infodir} \
 	libdir=$RPM_BUILD_ROOT%{_libdir}
 
-install buildscripts/out/lilypond-profile \
-	$RPM_BUILD_ROOT/etc/profile.d/lilypond.sh
-install buildscripts/out/lilypond-login \
-	$RPM_BUILD_ROOT/etc/profile.d/lilypond.csh
-
 perl -pi -e "s#$RPM_BUILD_ROOT##" $RPM_BUILD_ROOT%{_bindir}/*
 
 mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/source \
