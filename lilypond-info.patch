@@ -9,13 +9,12 @@
 -* Invoking etf2ly::             Importing Finale.
 -* Invoking abc2ly::             Importing ABC.          
 -* Invoking mup2ly::             Importing MUP. 
--* Other formats::               
 +* convert-ly::                  Older LilyPond versions.
 +* midi2ly::                     Importing MIDI.
 +* etf2ly::                      Importing Finale.
 +* abc2ly::                      Importing ABC.          
-+* musedata2ly::                 Importing Musedata.
 +* mup2ly::                      Importing MUP.
+ * Other formats::               
  @end menu
  
 -
@@ -76,7 +75,7 @@
  @end menu
  
 -@node Invoking lilypond
-+@node LilyPond
++@node lilypond
  @section Invoking lilypond
  @cindex Invoking LilyPond
  @cindex command line options
@@ -118,6 +117,15 @@
  @section Invoking lilypond-book
  
  
+@@ -549,7 +549,7 @@
+ 
+ You can use any filename extension, but if you do not use the
+ recommended extension, you may need to manually specify what output
+-format you want.  See @ref{Invoking lilypond-book} for details.
++format you want.  See @ref{lilypond-book} for details.
+ 
+ @code{Lilypond-book} automatically selects the output format based
+ on the filename.
 --- lilypond-2.4.0/Documentation/user/lilypond.tely	2004-10-30 18:00:50.000000000 +0000
 +++ lilypond-2.4.0.new/Documentation/user/lilypond.tely	2004-11-04 08:30:20.453425904 +0000
 @@ -12,20 +12,20 @@
@@ -185,14 +193,3 @@
  @end direntry
  
  @ifhtml
---- lilypond-2.4.0/Documentation/user/introduction.itely	2004-10-24 13:47:35.000000000 +0000
-+++ lilypond-2.4.0.new/Documentation/user/introduction.itely	2004-11-04 08:38:53.458437288 +0000
-@@ -676,7 +676,7 @@
- @ifhtml
- The chapter
- @end ifhtml
--@emph{@ref{Running LilyPond}} shows how to run LilyPond and its helper
-+@emph{@ref{LilyPond}} shows how to run LilyPond and its helper
- programs.
- 
- @item
