@@ -20,3 +20,23 @@
  	status = ly.system (cmd, ignore_error = 1)
  	signal = 0xf & status
   	exit_status = status >> 8
+--- lilypond-2.4.1/scm/framework-tex.scm.orig	2004-11-04 17:46:44.000000000 +0100
++++ lilypond-2.4.1/scm/framework-tex.scm	2004-11-06 16:22:41.984470864 +0100
+@@ -288,7 +288,7 @@
+ 
+ 			     (if (ly:get-option 'verbose)
+ 				 " "
+-				 " 2>&1 1>& /dev/null "))))
++				 " 2>&1 1>/dev/null "))))
+ 
+     (if (ly:get-option 'verbose)
+ 	(begin 
+@@ -312,7 +312,7 @@
+ 	       "latex \\\\nonstopmode \\\\input " name
+ 	       (if (ly:get-option 'verbose)
+ 		   " "
+-		   " 2>&1 1>& /dev/null "))))
++		   " 2>&1 1>/dev/null "))))
+     (setenv "extra_mem_top" (number->string (max curr-extra-mem 1024000)))
+     (if (ly:get-option 'verbose)
+ 	(begin 
