@@ -1,0 +1,37 @@
+diff -u lilypond-2.2.4/po.orig/it.po lilypond-2.2.4/po/it.po
+--- lilypond-2.2.4/po.orig/it.po	Thu Oct 30 00:32:53 2003
++++ lilypond-2.2.4/po/it.po	Tue Aug  3 16:28:19 2004
+@@ -2,11 +2,12 @@
+ # Tineke de Munnik <jantien@xs4all.nl>, 1998.
+ # Modified by Maurizio Umberto Puxeddu <umbpux@tin.it>, Feb1999
+ #
+-#, fuzzy
+ msgid ""
+ msgstr ""
+ "POT-Creation-Date: 2003-07-18 14:45+0200\n"
++"MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=ISO-8859-1\n"
++"Content-Transfer-Encoding: 8bit\n"
+ "Date: 1998-05-30 00:17:12+0200\n"
+ "From:  <jantien@xs4all.nl>\n"
+ "Xgettext-Options: --c++ --default-domain=lilypond --join --output-dir=../po/"
+diff -u lilypond-2.2.4/po.orig/ru.po lilypond-2.2.4/po/ru.po
+--- lilypond-2.2.4/po.orig/ru.po	Thu Oct 30 00:32:56 2003
++++ lilypond-2.2.4/po/ru.po	Tue Aug  3 16:29:45 2004
+@@ -2,7 +2,6 @@
+ # Copyright (C) YEAR Free Software Foundation, Inc.
+ # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+ #
+-#, fuzzy
+ msgid ""
+ msgstr ""
+ "Project-Id-Version: PACKAGE VERSION\n"
+@@ -12,7 +11,7 @@
+ "Language-Team: Russian <ru@li.org>\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=koi8-r\n"
+-"Content-Transfer-Encoding: ENCODING\n"
++"Content-Transfer-Encoding: 8bit\n"
+ 
+ #. this is where special info is often stored
+ #. ###############################################################
