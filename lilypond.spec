@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.gnu.org/gnu/lilypond/%{name}-%{version}.tar.gz
+# Source0-md5:	6408500246655cc4a0d74fbcf3f66f0c
 Patch0:		%{name}-info.patch
 URL:		http://www.cs.uu.nl/people/hanwen/lilypond/index.html
 BuildRequires:	bison
