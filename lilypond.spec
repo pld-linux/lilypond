@@ -1,12 +1,12 @@
 Summary:	Music typesetter
 Summary(pl):	Program do sk³adania nut
 Name:		lilypond
-Version:	2.0.1
+Version:	2.0.2
 Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.lilypond.org/pub/LilyPond/v2.0/%{name}-%{version}.tar.gz
-# Source0-md5:	04dcc17cf238b0bb5e31c993bfcc76b4
+# Source0-md5:	18c064f9f8b1aa1f701ccf85f44f70cf
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 URL:		http://www.lilypond.org/
@@ -45,6 +45,19 @@ partytury u¿ywaj±c jêzyka wysokiego poziomu jako wej¶cie. S³u¿y przede
 wszystkim do sk³adania nut muzyki klasycznej, ale mo¿na drukowaæ tak¿e
 piosenki pop. Autorzy udostêpniaj± LilyPond z nadziej± dostarczenia
 wszystkim oprogramowania do publikacji muzycznych.
+
+%package -n emacs-lilypond-mode-pkg
+Summary:	LilyPond mode for Emacs
+Summary(pl):	Tryb edycji plików LilyPond dla Emacsa
+Group:		Applications/Editors/Emacs
+Requires:	%{name} = %{version}-%{release}
+Requires:	emacs
+
+%description -n emacs-lilypond-mode-pkg
+LilyPond mode for Emacs.
+
+%description -n emacs-lilypond-mode-pkg -l pl
+Tryb edycji plików LilyPond dla Emacsa.
 
 %prep
 %setup -q
@@ -117,8 +130,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{texfontsdir}/*/lilypond
 
-# subpackage?
-%{_datadir}/emacs/site-lisp/*
-
 # needed? subpackage? (could install in non-existing dir)
 %{_datadir}/omf/lilypond
+
+%files -n emacs-lilypond-mode-pkg
+%defattr(644,root,root,755)
+%{_datadir}/emacs/site-lisp/*.el
