@@ -9,23 +9,14 @@
  	status = ly.system (cmd, ignore_error = 1)
  	signal = 0xf & status
   	exit_status = status >> 8
---- lilypond-2.0.0/scripts/lilypond-book.py.orig	2003-09-23 20:50:42.000000000 +0200
-+++ lilypond-2.0.0/scripts/lilypond-book.py	2003-10-04 00:53:30.132629680 +0200
-@@ -219,7 +219,7 @@
- 		cmd = "latex '\\nonstopmode \input %s'" % fname
- 	        # Ugh.  (La)TeX writes progress and error messages on stdout
- 		# Redirect to stderr
--		cmd = '(( %s  >&2 ) >&- )' % cmd
-+		cmd = '( %s  >&2 )' % cmd
- 		status = ly.system (cmd, ignore_error = 1)
- 		signal = 0xf & status
- 		exit_status = status >> 8
-@@ -1403,7 +1403,7 @@
- 		cmd = r"latex '\nonstopmode \input %s'" % file
- 	        # Ugh.  (La)TeX writes progress and error messages on stdout
- 		# Redirect to stderr
--		cmd = '(( %s  >&2 ) >&- )' % cmd
-+		cmd = '( %s  >&2 )' % cmd
- 		
- 		ly.system (cmd)
- 		ly.system ("dvips -E -o %s.eps %s" % (file, file))
+--- lilypond-2.2.0/scripts/lilypond-book.py.orig	2004-04-01 00:20:56.000000000 +0200
++++ lilypond-2.2.0/scripts/lilypond-book.py	2004-04-25 23:13:06.368515528 +0200
+@@ -418,7 +418,7 @@
+ 	cmd = r'latex "\nonstopmode \input %s"' % file
+ 	# Ugh.  (La)TeX writes progress and error messages on stdout
+ 	# Redirect to stderr
+-	cmd = '(( %s  >&2 ) >&- )' % cmd
++	cmd = '( %s  >&2 )' % cmd
+ 	ly.system (cmd)
+ 	ly.system ('dvips -Ppdf -u+lilypond.map -E -o %s.eps %s' \
+ 		   % (file, file))
