@@ -10,6 +10,7 @@ Source0:	http://lilypond.org/download/v2.2/%{name}-%{version}.tar.gz
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 URL:		http://www.lilypond.org/
+BuildRequires:	automake
 BuildRequires:	bison >= 1.25
 BuildRequires:	flex
 BuildRequires:	gettext-devel
@@ -65,6 +66,7 @@ Tryb edycji plików LilyPond dla Emacsa.
 %patch1 -p1
 
 %build
+cp -f /usr/share/automake/config.* stepmake/bin
 %configure
 %{__make}
 
