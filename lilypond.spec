@@ -23,6 +23,8 @@ BuildRequires:	python-devel
 BuildRequires:	texinfo
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-fonts-cm
+BuildRequires:	tetex-fonts-cmextra
+BuildRequires:	tetex-fonts-jknappen
 BuildConflicts:	lilypond < 1.6.0
 Requires:	tetex-format-latex
 Requires:	ghostscript
@@ -61,8 +63,8 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{texfontsdir}/{source,tfm,type1}
 install -d $RPM_BUILD_ROOT/etc/profile.d
+install -d $RPM_BUILD_ROOT%{texfontsdir}/{source,tfm,type1}
 
 %{__make} install \
 	local_lilypond_datadir=$RPM_BUILD_ROOT%{_datadir}/lilypond/%{version} \
@@ -80,12 +82,12 @@ install buildscripts/out/lilypond-login \
 
 perl -pi -e "s#$RPM_BUILD_ROOT##" $RPM_BUILD_ROOT%{_bindir}/*
 
-mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/source \ 
-	$RPM_BUILD_ROOT%{texfontsdir}/source/lilypond
+mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/source \
+      $RPM_BUILD_ROOT%{texfontsdir}/source/lilypond
 mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/tfm \
-	$RPM_BUILD_ROOT%{texfontsdir}/tfm/lilypond
+      $RPM_BUILD_ROOT%{texfontsdir}/tfm/lilypond
 mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/type1 \
-	$RPM_BUILD_ROOT%{texfontsdir}/type1/lilypond
+      $RPM_BUILD_ROOT%{texfontsdir}/type1/lilypond
 
 %find_lang %{name}
 
@@ -115,18 +117,20 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/lilypond/%{version}/python/*.pyc
 %dir %{_libdir}/lilypond/%{version}/python
 %attr(755,root,root) %{_libdir}/lilypond/%{version}/python/midi.so
+%{_datadir}/lilypond/%{version}/fonts
 %{_datadir}/lilypond/%{version}/scm
 %{_datadir}/lilypond/%{version}/tex
-%{texfontsdir}/*/lilypond
 %{_infodir}/*.info*
 %{_mandir}/man1/*
 
 %dir %{_datadir}/lilypond/%{version}/dvips/
 %{_datadir}/lilypond/%{version}/dvips/*
-%dir %{_datadir}/lilypond/%{version}/fonts/type1/
-%{_datadir}/lilypond/%{version}/fonts/type1/*
 %dir %{_datadir}/lilypond/%{version}/make/
 %{_datadir}/lilypond/%{version}/make/*
+
+%{_datadir}/emacs/site-lisp/*
+%{texfontsdir}/*/lilypond
+
 
 %dir %{_datadir}/omf/lilypond/%{version}/
 %{_datadir}/omf/lilypond/%{version}/*
