@@ -1,12 +1,12 @@
 Summary:	Music typesetter
 Summary(pl):	Program do sk³adania nut
 Name:		lilypond
-Version:	2.0.0
+Version:	2.0.1
 Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.lilypond.org/pub/LilyPond/v2.0/%{name}-%{version}.tar.gz
-# Source0-md5:	80faf9f9abc4ecf72a71ba0036cdfee0
+# Source0-md5:	04dcc17cf238b0bb5e31c993bfcc76b4
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 URL:		http://www.lilypond.org/
