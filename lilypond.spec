@@ -20,7 +20,7 @@ BuildRequires:	guile-devel
 BuildRequires:	kpathsea-devel
 BuildRequires:	libltdl-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	python
+BuildRequires:	python-devel
 BuildRequires:	texinfo
 BuildConflicts:	lilypond < 1.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
