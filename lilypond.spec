@@ -2,7 +2,7 @@ Summary:	Music typesetter
 Summary(pl):	Program do sk³adania nut
 Name:		lilypond
 Version:	2.4.1
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://lilypond.org/download/v2.4/%{name}-%{version}.tar.gz
@@ -27,11 +27,13 @@ BuildRequires:	tetex-dvips
 BuildRequires:	tetex-fonts-cm
 BuildRequires:	tetex-fonts-cmextra
 BuildRequires:	tetex-fonts-jknappen
+BuildRequires:	tetex-fonts-type1-ec-mftraced
 BuildRequires:	texinfo >= 4.6
 BuildConflicts:	lilypond < 1.6.0
 Requires:	ghostscript
 Requires:	guile >= 1.6
 Requires:	python >= 2.1
+Requires:	tetex-fonts-type1-ec-mftraced
 Requires:	tetex-format-latex >= 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -80,7 +82,7 @@ cp -f /usr/share/automake/config.* stepmake/bin
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{texfontsdir}/{source,tfm,type1}
+install -d $RPM_BUILD_ROOT%{texfontsdir}/{source,afm,tfm,type1}
 
 %{__make} install \
 	local_lilypond_datadir=$RPM_BUILD_ROOT%{_datadir}/lilypond/%{version} \
@@ -93,12 +95,15 @@ install -d $RPM_BUILD_ROOT%{texfontsdir}/{source,tfm,type1}
 
 %{__perl} -pi -e "s#$RPM_BUILD_ROOT##" $RPM_BUILD_ROOT%{_bindir}/*
 
+mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/afm \
+      $RPM_BUILD_ROOT%{texfontsdir}/afm/lilypond
 mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/source \
       $RPM_BUILD_ROOT%{texfontsdir}/source/lilypond
 mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/tfm \
       $RPM_BUILD_ROOT%{texfontsdir}/tfm/lilypond
 mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/type1 \
       $RPM_BUILD_ROOT%{texfontsdir}/type1/lilypond
+rmdir $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts
 
 mv -f $RPM_BUILD_ROOT%{_infodir}/lilypond/*.info* $RPM_BUILD_ROOT%{_infodir}
 
