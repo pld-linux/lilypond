@@ -5,8 +5,6 @@ Version:	1.2.6
 Release:	1
 License:	GPL
 Group:		Applications/Sound
-Group(de):	Applikationen/Laut
-Group(pl):	Aplikacje/D¼wiêk
 Source0:	ftp://ftp.gnu.org/gnu/lilypond/%{name}-%{version}.tar.gz
 URL:		http://www.cs.uu.nl/people/hanwen/lilypond/index.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
