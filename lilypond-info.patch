@@ -59,19 +59,19 @@
  @section Invoking mup2ly
  
  Mup (Music Publisher) is a shareware music notation program by Arkkra
---- lilypond-2.4.0/Documentation/user/invoking.itely	2004-10-30 15:44:43.000000000 +0000
-+++ lilypond-2.4.0.new/Documentation/user/invoking.itely	2004-11-04 08:27:55.459468336 +0000
+--- lilypond-2.4.1/Documentation/user/invoking.itely.orig	2004-11-04 17:46:40.000000000 +0100
++++ lilypond-2.4.1/Documentation/user/invoking.itely	2004-11-05 20:43:12.794023112 +0100
 @@ -6,14 +6,14 @@
  
-  
+ 
  @menu
--* Invoking lilypond::           
+-* Invoking lilypond::
 +* lilypond::
- * Error messages::              
- * Reporting bugs::              
- * Editor support::              
--* Invoking lilypond-latex::     
-+* lilypond-latex::     
+ * Error messages::
+ * Reporting bugs::
+ * Editor support::
+-* Invoking lilypond-latex::
++* lilypond-latex::
  @end menu
  
 -@node Invoking lilypond
@@ -79,7 +79,7 @@
  @section Invoking lilypond
  @cindex Invoking LilyPond
  @cindex command line options
-@@ -372,7 +372,7 @@
+@@ -383,7 +383,7 @@
  
  
  
@@ -87,7 +87,7 @@
 +@node lilypond-latex
  @section Invoking lilypond-latex
  
- Before LilyPond 3.0, the @code{lilypond} program only generated music
+ Before LilyPond 2.4, the @code{lilypond} program only generated music
 --- lilypond-2.4.0/Documentation/user/lilypond-book.itely	2004-10-24 13:47:35.000000000 +0000
 +++ lilypond-2.4.0.new/Documentation/user/lilypond-book.itely	2004-11-04 08:28:54.166543504 +0000
 @@ -39,7 +39,7 @@
