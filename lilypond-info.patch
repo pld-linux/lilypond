@@ -1,18 +1,45 @@
---- lilypond-1.4.13/Documentation/user/lilypond.tely.orig	Fri May 11 15:29:05 2001
-+++ lilypond-1.4.13/Documentation/user/lilypond.tely	Sat Nov  2 13:07:49 2002
-@@ -3,10 +3,10 @@
- @settitle GNU LilyPond
- 
- 
+--- lilypond-1.6.0/Documentation/user/lilypond.tely.orig	Mon Aug 19 03:55:44 2002
++++ lilypond-1.6.0/Documentation/user/lilypond.tely	Wed Apr  2 00:33:09 2003
+@@ -12,20 +12,18 @@
+     ./install-info --info-dir=/usr/share/info out/lilypond.info
+     
+ @end ignore
 -@dircategory GNU music project
 +@dircategory Miscellaneous:
  @direntry
  @c    ;; prepend GNU for dir, must be unique
--* GNU LilyPond: (lilypond).          The GNU music typesetter.
+-* GNU LilyPond: (lilypond).                    The GNU music typesetter.
+-* ly2dvi: (lilypond)Invoking ly2dvi::          Titling LilyPond scores.
+-* convert-ly: (lilypond)Invoking convert-ly::
+-                                               Older LilyPond versions.
+-* midi2ly: (lilypond)Invoking midi2ly::        Importing MIDI.
+-* etf2ly: (lilypond)Invoking etf2ly::          Importing Finale.
+-* abc2ly: (lilypond)Invoking abc2ly::          Importing ABC.          
+-* pmx2ly: (lilypond)Invoking pmx2ly::          Importing PMX.
+-* musedata2ly: (lilypond)Invoking musedata2ly::
+-                                               Importing Musedata.
+-* mup2ly: (lilypond)Invoking mup2ly::          Importing MUP. 
 +* GNU LilyPond: (lilypond).		The GNU music typesetter
- @c * install-info: (texinfo)Invoking install-info. Update info/dir entries.
- @c * texi2dvi: (texinfo)Format with texi2dvi.      Print Texinfo documents.
++* ly2dvi: (lilypond)ly2dvi::		Titling LilyPond scores
++* convert-ly: (lilypond)convert-ly::	Older LilyPond versions
++* midi2ly: (lilypond)midi2ly::		Importing MIDI
++* etf2ly: (lilypond)etf2ly::		Importing Finale
++* abc2ly: (lilypond)abc2ly::		Importing ABC
++* pmx2ly: (lilypond)pmx2ly::		Importing PMX
++* musedata2ly: (lilypond)musedata2ly::	Importing Musedata
++* mup2ly: (lilypond)mup2ly::		Importing MUP
  @end direntry
+ 
+ 
+@@ -90,7 +88,7 @@
+ * Tutorial::                       A tutorial introduction to LilyPond.
+ * Reference Manual::               Reference Manual.
+ * Advanced Topics::                How it all works.
+-* Invoking LilyPond::              Operation.
++* LilyPond::                       Operation.
+ * Converting from other formats::  Converting to lilypond source format.
+ * Integrating text and music with lilypond-book::
+                                    The lilypond-book manual.
 --- lilypond-1.4.13/scm/documentation-lib.scm.orig	Fri Apr  6 18:06:46 2001
 +++ lilypond-1.4.13/scm/documentation-lib.scm	Sat Nov  2 13:13:40 2002
 @@ -108,10 +108,10 @@
@@ -28,3 +55,152 @@
     "\n@end direntry"
     ;; ugh, prev and next should be settable, of course
     (node "Top") ",(lilypond)Index,(lilypond)Full Grob interface list," top
+--- lilypond-1.6.0/Documentation/user/converters.itely.orig	Mon Aug 19 03:55:44 2002
++++ lilypond-1.6.0/Documentation/user/converters.itely	Wed Apr  2 20:18:49 2003
+@@ -4,17 +4,17 @@
+ @chapter Converting from other formats
+ 
+ @menu
+-* Invoking convert-ly::            Older LilyPond versions.
+-* Invoking midi2ly::               Importing MIDI.
+-* Invoking etf2ly::                Importing Finale.
+-* Invoking abc2ly::                Importing ABC.          
+-* Invoking pmx2ly::                Importing PMX.
+-* Invoking musedata2ly::           Importing Musedata.
+-* Invoking mup2ly::                Importing MUP. 
++* convert-ly::                     Older LilyPond versions.
++* midi2ly::                        Importing MIDI.
++* etf2ly::                         Importing Finale.
++* abc2ly::                         Importing ABC.          
++* pmx2ly::                         Importing PMX.
++* musedata2ly::                    Importing Musedata.
++* mup2ly::                         Importing MUP. 
+ @end menu
+ 
+ 
+-@node Invoking convert-ly
++@node convert-ly
+ @section Invoking convert-ly
+ 
+ Convert-ly sequentially applies different conversions to upgrade a
+@@ -61,7 +61,7 @@
+ 
+ Not all language changes are handled. Only one output options can be specified.
+ 
+-@node Invoking midi2ly
++@node midi2ly
+ @section Invoking midi2ly
+ 
+ @cindex MIDI
+@@ -124,7 +124,7 @@
+ @end table
+ 
+ 
+-@node Invoking etf2ly
++@node etf2ly
+ @section Invoking etf2ly
+ 
+ @cindex ETF
+@@ -158,7 +158,7 @@
+ etf2ly.
+ 
+ 
+-@node Invoking abc2ly
++@node abc2ly
+ @section Invoking abc2ly
+ 
+ @cindex ABC
+@@ -216,7 +216,7 @@
+ 
+ abc2ly ignores the ABC beaming.
+ 
+-@node Invoking pmx2ly
++@node pmx2ly
+ @section Invoking pmx2ly
+ 
+ PMX is a MusiXTeX preprocessor written by Don Simons. More information
+@@ -249,7 +249,7 @@
+ @end table
+ 
+ 
+-@node Invoking musedata2ly
++@node musedata2ly
+ @section Invoking musedata2ly
+ 
+ @cindex Musedata
+@@ -284,7 +284,7 @@
+ 
+ musedata2ly converts only a small subset musedata. 
+ 
+-@node Invoking mup2ly
++@node mup2ly
+ @section Invoking mup2ly
+ 
+ MUP (Music Publisher) is a shareware music notation program by Arkkra
+--- lilypond-1.6.0/Documentation/user/invoking.itexi.orig	Mon Aug 19 03:55:44 2002
++++ lilypond-1.6.0/Documentation/user/invoking.itexi	Wed Apr  2 20:20:05 2003
+@@ -1,11 +1,11 @@
+ @c -*-texinfo-*-
+-@node Invoking LilyPond
++@node LilyPond
+ @chapter Invoking LilyPond
+ 
+ @menu
+ * Reporting bugs::              
+ * Website::                     
+-* Invoking ly2dvi::           Titling LilyPond scores.
++* ly2dvi::                    Titling LilyPond scores.
+ @end menu
+ 
+ @cindex Invoking LilyPond
+@@ -230,7 +230,7 @@
+ website at @uref{http://www.lilypond.org/}.
+ 
+ 
+-@node Invoking ly2dvi
++@node ly2dvi
+ @section Invoking ly2dvi
+ 
+ Nicely titled output is created through a separate program:
+--- lilypond-1.6.0/Documentation/user/lilypond-book.itely.orig	Mon Aug 19 03:55:44 2002
++++ lilypond-1.6.0/Documentation/user/lilypond-book.itely	Wed Apr  2 20:20:30 2003
+@@ -34,7 +34,7 @@
+ * Integrating La@TeX{} and music::  
+ * Integrating HTML and music::  
+ * Music fragment options::      
+-* Invoking lilypond-book::      
++* lilypond-book::      
+ @end menu
+ 
+ 
+@@ -282,7 +282,7 @@
+     starting note.
+ @end table
+ 
+-@node Invoking lilypond-book
++@node lilypond-book
+ @section Invoking lilypond-book
+ 
+ When you run @command{lilypond-book} it will generate lots of small
+--- lilypond-1.6.0/Documentation/user/refman.itely.orig	Mon Aug 19 03:55:44 2002
++++ lilypond-1.6.0/Documentation/user/refman.itely	Wed Apr  2 20:20:59 2003
+@@ -522,7 +522,7 @@
+ 
+ Another option is to enter the music using your favorite MIDI
+ sequencer, and then import it using midi2ly. midi2ly is described in
+-@ref{Invoking midi2ly}.
++@ref{midi2ly}.
+ 
+ 
+ @c .  {Relative}
+--- lilypond-1.6.0/Documentation/user/tutorial.itely.orig	Wed Apr  2 20:21:27 2003
++++ lilypond-1.6.0/Documentation/user/tutorial.itely	Wed Apr  2 20:21:06 2003
+@@ -1749,7 +1749,7 @@
+ for.  When you compile this file, the version number will be checked
+ and you will get a warning when the file is too old.  This version
+ number is also used by the @code{convert-ly} program (See
+-@ref{Invoking convert-ly}), which can used to update the file to the
++@ref{convert-ly}), which can used to update the file to the
+ latest lily version.
+ 
+ 

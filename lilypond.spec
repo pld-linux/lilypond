@@ -1,14 +1,12 @@
 Summary:	Music typesetter
 Summary(pl):	Program do sk³adania nut
 Name:		lilypond
-Version:	1.4.13
-Release:	3
+Version:	1.6.0
+Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	ftp://ftp.gnu.org/gnu/lilypond/%{name}-%{version}.tar.gz
-Patch0:		%{name}-pythonhack.patch
-Patch1:		%{name}-gcc3.patch
-Patch2:		%{name}-info.patch
+Patch0:		%{name}-info.patch
 URL:		http://www.cs.uu.nl/people/hanwen/lilypond/index.html
 BuildRequires:	bison
 BuildRequires:	flex
@@ -16,10 +14,11 @@ BuildRequires:	guile-devel
 BuildRequires:	kpathsea-devel
 BuildRequires:	libltdl-devel
 BuildRequires:	libstdc++-devel
+BuildRequires:	python
 BuildRequires:	texinfo
+BuildConflicts:	lilypond < 1.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_datadir	%{_prefix}/share/lilypond
 %define		_localedir	%{_prefix}/share/locale
 %define		texfontsdir	/usr/share/texmf/fonts
 
@@ -40,8 +39,6 @@ wszystkim oprogramowania do publikacji muzycznych.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 %configure2_13
@@ -52,20 +49,21 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{texfontsdir}/{afm,source,tfm}
 
 %{__make} install \
+	local_lilypond_datadir=$RPM_BUILD_ROOT%{_datadir}/lilypond/%{version} \
 	datadir=$RPM_BUILD_ROOT%{_datadir} \
 	mandir=$RPM_BUILD_ROOT%{_mandir} \
 	bindir=$RPM_BUILD_ROOT%{_bindir} \
 	localedir=$RPM_BUILD_ROOT%{_localedir} \
 	infodir=$RPM_BUILD_ROOT%{_infodir}
 
-mv -f $RPM_BUILD_ROOT%{_datadir}/afm $RPM_BUILD_ROOT%{texfontsdir}/afm/lilypond
-mv -f $RPM_BUILD_ROOT%{_datadir}/mf $RPM_BUILD_ROOT%{texfontsdir}/source/lilypond
-mv -f $RPM_BUILD_ROOT%{_datadir}/tfm $RPM_BUILD_ROOT%{texfontsdir}/tfm/lilypond
+mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/afm $RPM_BUILD_ROOT%{texfontsdir}/afm/lilypond
+mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/source $RPM_BUILD_ROOT%{texfontsdir}/source/lilypond
+mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/tfm $RPM_BUILD_ROOT%{texfontsdir}/tfm/lilypond
 
 %find_lang %{name}
 
 %clean
-rm -rf ${RPM_BUILD_ROOT}
+rm -rf $RPM_BUILD_ROOT
 
 %post
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
@@ -77,13 +75,16 @@ rm -rf ${RPM_BUILD_ROOT}
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS.txt CHANGES DEDICATION FAQ.txt NEWS README.txt
+%doc AUTHORS.txt CHANGES DEDICATION NEWS README.txt
 %attr(755,root,root) %{_bindir}/*
-%dir %{_datadir}
-%{_datadir}/ly
-%{_datadir}/ps
-%{_datadir}/scm
-%{_datadir}/tex
+%dir %{_datadir}/lilypond
+%dir %{_datadir}/lilypond/%{version}
+%{_datadir}/lilypond/%{version}/ly
+%{_datadir}/lilypond/%{version}/ps
+%dir %{_datadir}/lilypond/%{version}/python
+%attr(755,root,root) %{_datadir}/lilypond/%{version}/python/midi.so
+%{_datadir}/lilypond/%{version}/scm
+%{_datadir}/lilypond/%{version}/tex
 %{texfontsdir}/*/lilypond
-%{_infodir}/*
+%{_infodir}/*.info*
 %{_mandir}/man1/*
