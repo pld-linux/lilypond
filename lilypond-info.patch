@@ -181,7 +181,7 @@ diff -Nur lilypond-2.0.0.orig/Documentation/user/lilypond.tely lilypond-2.0.0/Do
 -                                               Importing Musedata.
 -* mup2ly: (lilypond)Invoking mup2ly::          Importing MUP. 
 +* GNU LilyPond: (lilypond).		The GNU music typesetter
-+* lilypond: (lilypond)lilypond.	Titling LilyPond scores
++* lilypond: (lilypond)lilypond.		Titling LilyPond scores
 +* convert-ly: (lilypond)convert-ly.	Older LilyPond versions
 +* midi2ly: (lilypond)midi2ly.		Importing MIDI
 +* etf2ly: (lilypond)etf2ly.		Importing Finale

@@ -112,9 +112,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/*.info*
 %{_mandir}/man1/*
 
+# lilypond/stepmake build system - not needed at runtime
 #%{_datadir}/lilypond/%{version}/make
 
-%{_datadir}/emacs/site-lisp/*
 %{texfontsdir}/*/lilypond
 
+# subpackage?
+%{_datadir}/emacs/site-lisp/*
+
+# needed? subpackage? (could install in non-existing dir)
 %{_datadir}/omf/lilypond
