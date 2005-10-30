@@ -1,77 +1,67 @@
---- lilypond-2.4.0/Documentation/user/converters.itely	2004-10-30 16:05:07.000000000 +0000
-+++ lilypond-2.4.0.new/Documentation/user/converters.itely	2004-11-04 08:25:47.364941664 +0000
-@@ -12,16 +12,15 @@
+--- lilypond-2.6.4/Documentation/user/converters.itely.orig	2005-09-23 23:20:58.000000000 +0200
++++ lilypond-2.6.4/Documentation/user/converters.itely	2005-10-29 20:32:46.600522360 +0200
+@@ -12,16 +12,16 @@
  
  
  @menu
--* Invoking convert-ly::         Older LilyPond versions.
 -* Invoking midi2ly::            Importing MIDI.
 -* Invoking etf2ly::             Importing Finale.
 -* Invoking abc2ly::             Importing ABC.          
 -* Invoking mup2ly::             Importing MUP. 
-+* convert-ly::                  Older LilyPond versions.
 +* midi2ly::                     Importing MIDI.
 +* etf2ly::                      Importing Finale.
 +* abc2ly::                      Importing ABC.          
-+* mup2ly::                      Importing MUP.
- * Other formats::               
++* mup2ly::                      Importing MUP. 
+ * Generating LilyPond files::   
  @end menu
  
--
--@node Invoking convert-ly
-+@node convert-ly
- @section Invoking convert-ly
  
- The syntax is regularly changed to simplify it or improve it in
-@@ -74,7 +73,7 @@
- 
- Not all language changes are handled. Only one output option can be specified.
  
 -@node Invoking midi2ly
 +@node midi2ly
- @section Invoking midi2ly
+ @section Invoking @command{midi2ly}
  
  @cindex MIDI
-@@ -145,7 +144,7 @@
+@@ -105,7 +105,7 @@
  to a single duration and add phrase markings or pedal indicators.
  
  
 -@node Invoking etf2ly
 +@node etf2ly
- @section Invoking etf2ly
+ @section Invoking @command{etf2ly}
  
  @cindex ETF
-@@ -179,7 +178,7 @@
- confuse etf2ly. Sequences of grace notes are ended improperly.
+@@ -141,7 +141,7 @@
+ confuse @command{etf2ly}.  Sequences of grace notes are ended improperly.
  
  
 -@node Invoking abc2ly
 +@node abc2ly
- @section Invoking abc2ly
+ @section Invoking @code{abc2ly}
  
  @cindex ABC
-@@ -238,7 +237,7 @@
- abc2ly ignores the ABC beaming.
+@@ -202,7 +202,7 @@
+ @command{abc2ly} ignores the ABC beaming.
  
  
 -@node Invoking mup2ly
 +@node mup2ly
- @section Invoking mup2ly
+ @section Invoking @command{mup2ly}
  
  Mup (Music Publisher) is a shareware music notation program by Arkkra
---- lilypond-2.4.1/Documentation/user/invoking.itely.orig	2004-11-04 17:46:40.000000000 +0100
-+++ lilypond-2.4.1/Documentation/user/invoking.itely	2004-11-05 20:43:12.794023112 +0100
-@@ -6,14 +6,14 @@
+--- lilypond-2.6.4/Documentation/user/invoking.itely.orig	2005-09-23 23:20:58.000000000 +0200
++++ lilypond-2.6.4/Documentation/user/invoking.itely	2005-10-29 20:33:32.703513640 +0200
+@@ -6,7 +6,7 @@
  
  
  @menu
--* Invoking lilypond::
-+* lilypond::
- * Error messages::
- * Reporting bugs::
- * Editor support::
--* Invoking lilypond-latex::
-+* lilypond-latex::
+-* Invoking lilypond::           
++* lilypond::           
+ * Error messages::              
+ * Updating files with convert-ly::  
+ * Reporting bugs::              
+@@ -15,7 +15,7 @@
+ * Including LilyPond files::    
  @end menu
  
 -@node Invoking lilypond
@@ -79,98 +69,95 @@
  @section Invoking lilypond
  @cindex Invoking LilyPond
  @cindex command line options
-@@ -383,7 +383,7 @@
- 
- 
- 
--@node Invoking lilypond-latex
-+@node lilypond-latex
- @section Invoking lilypond-latex
- 
- Before LilyPond 2.4, the @code{lilypond} program only generated music
---- lilypond-2.4.0/Documentation/user/lilypond-book.itely	2004-10-24 13:47:35.000000000 +0000
-+++ lilypond-2.4.0.new/Documentation/user/lilypond-book.itely	2004-11-04 08:28:54.166543504 +0000
-@@ -39,7 +39,7 @@
- * Integrating LaTeX and music::  
- * Integrating HTML and music::  
- * Music fragment options::      
+--- lilypond-2.6.4/Documentation/user/lilypond-book.itely.orig	2005-09-23 23:20:58.000000000 +0200
++++ lilypond-2.6.4/Documentation/user/lilypond-book.itely	2005-10-29 20:34:04.617661952 +0200
+@@ -36,7 +36,7 @@
+ * Integrating Texinfo and music::
+ * Integrating HTML and music::
+ * Music fragment options::
 -* Invoking lilypond-book::
 +* lilypond-book::
  * Filename extensions::
  @end menu
  
-@@ -363,7 +363,7 @@
-   <lilypondfile>trip.ly</lilypondfile>
- @end example
- This runs @file{trip.ly} through @code{lilypond} (see also
--@ref{Invoking lilypond}), and substitutes a preview image in the
-+@ref{lilypond}), and substitutes a preview image in the
- output. The image links to a separate HTML file, so clicking it will
- take the viewer to a menu, with links to images, midi and printouts.
+@@ -310,7 +310,7 @@
  
-@@ -458,7 +458,7 @@
+ @noindent
+ where the @var{file}@command{psfonts} file is obtained from
+-@command{lilypond-book}, @xref{Invoking lilypond-book} for details. PDF
++@command{lilypond-book}, @xref{lilypond-book} for details. PDF
+ can then be produced with a PostScript to PDF translator like
+ @code{ps2pdf} (which is part of GhostScript).  Running @command{dvips}
+ will produce some warnings about fonts; these are harmless and may
+@@ -573,7 +573,7 @@
  @end table
  
  
 -@node Invoking lilypond-book
 +@node lilypond-book
- @section Invoking lilypond-book
+ @section Invoking @command{lilypond-book}
  
+ @command{lilypond-book} produces a file with one of the following
+@@ -689,7 +689,7 @@
  
-@@ -549,7 +549,7 @@
+ You can use any filename extension for the input file, but if you do not
+ use the recommended extension for a particular format you may need to
+-manually specify the output format.  @xref{Invoking lilypond-book}, for
++manually specify the output format.  @xref{lilypond-book}, for
+ details.  Otherwise, @command{lilypond-book} automatically selects the
+ output format based on the input filename's extension.
  
- You can use any filename extension, but if you do not use the
- recommended extension, you may need to manually specify what output
--format you want.  See @ref{Invoking lilypond-book} for details.
-+format you want.  See @ref{lilypond-book} for details.
- 
- @code{Lilypond-book} automatically selects the output format based
- on the filename.
---- lilypond-2.4.0/Documentation/user/lilypond.tely	2004-10-30 18:00:50.000000000 +0000
-+++ lilypond-2.4.0.new/Documentation/user/lilypond.tely	2004-11-04 08:30:20.453425904 +0000
-@@ -12,20 +12,20 @@
-     
- @end ignore
+--- lilypond-2.6.4/Documentation/user/lilypond.tely.orig	2005-09-23 23:20:58.000000000 +0200
++++ lilypond-2.6.4/Documentation/user/lilypond.tely	2005-10-29 20:36:31.159384224 +0200
+@@ -5,7 +5,7 @@
+ @afourpaper
+ @end iftex
  
 -@dircategory GNU music project
 +@dircategory Miscellaneous:
  @direntry
- @c  prepend GNU for dir, must be unique
- @c  do not list the `lilypond' node at toplevel, so that `info lilypond'
- @c  goes to Top.
- @c  * lilypond: (lilypond/lilypond)Running LilyPond.      Invoking the
- @c  LilyPond  program.
--* GNU LilyPond: (lilypond/lilypond).           The GNU music typesetter.
--* convert-ly: (lilypond/lilypond)Invoking convert-ly.  Older LilyPond versions.
--* midi2ly: (lilypond/lilypond)Invoking midi2ly.        Importing MIDI.
--* etf2ly: (lilypond/lilypond)Invoking etf2ly.          Importing Finale.
+ 
+ @ignore
+@@ -35,14 +35,14 @@
+   
+ @end ignore
+ 
+-* LilyPond: (lilypond/lilypond).           The GNU music typesetter.
 -* abc2ly: (lilypond/lilypond)Invoking abc2ly.          Importing ABC.          
--* musedata2ly: (lilypond/lilypond)Invoking musedata2ly.        Importing MuseData.
+-* convert-ly: (lilypond/lilypond)Invoking convert-ly.  Older LilyPond versions.
+-* etf2ly: (lilypond/lilypond)Invoking etf2ly.          Importing Finale.
+-* lilypond-book: (lilypond/lilypond)LilyPond-book.     Itegrating text and music.
+-* midi2ly: (lilypond/lilypond)Invoking midi2ly.        Importing MIDI.
 -* mup2ly: (lilypond/lilypond)Invoking mup2ly.          Importing Mup. 
-+* GNU LilyPond: (lilypond).		The GNU music typesetter
-+* convert-ly: (lilypond)convert-ly.	Older LilyPond versions
-+* midi2ly: (lilypond)midi2ly.		Importing MIDI
-+* etf2ly: (lilypond)etf2ly.		Importing Finale
+-* musedata2ly: (lilypond/lilypond)Invoking musedata2ly.        Importing MuseData.
++* LilyPond: (lilypond).			The GNU music typesetter
 +* abc2ly: (lilypond)abc2ly.		Importing ABC
-+* musedata2ly: (lilypond)musedata2ly.	Importing MuseData
++* convert-ly: (lilypond)convert-ly.	Older LilyPond versions
++* etf2ly: (lilypond)etf2ly.		Importing Finale
++* lilypond-book: (lilypond)LilyPond-book.	Itegrating text and music
++* midi2ly: (lilypond)midi2ly.		Importing MIDI
 +* mup2ly: (lilypond)mup2ly.		Importing Mup
++* musedata2ly: (lilypond)musedata2ly.	Importing MuseData
  @end direntry
  
  
---- lilypond-2.4.0/Documentation/user/tutorial.itely	2004-10-30 21:41:06.000000000 +0000
-+++ lilypond-2.4.0.new/Documentation/user/tutorial.itely	2004-11-04 08:31:01.840134168 +0000
-@@ -918,7 +918,7 @@
- @noindent
- These annotations make future upgrades of LilyPond go more
- smoothly.  Changes in the syntax are handled with a special program,
--@file{convert-ly} (see @ref{Invoking convert-ly}), and it uses
-+@file{convert-ly} (see @ref{convert-ly}), and it uses
- @code{\version} to determine what rules to apply.
+--- lilypond-2.6.4/Documentation/user/music-glossary.tely.orig	2005-08-25 13:12:54.000000000 +0200
++++ lilypond-2.6.4/Documentation/user/music-glossary.tely	2005-10-29 20:36:59.482078520 +0200
+@@ -6,9 +6,9 @@
+ @documentencoding utf-8
+ @documentlanguage en
  
+-@dircategory GNU music project
++@dircategory Miscellaneous:
+ @direntry
+-* Glossary: (lilypond/music-glossary).  Glossary of music terms.
++* Glossary: (music-glossary).		Glossary of music terms
+ @end direntry
  
---- lilypond-2.4.0/scm/documentation-lib.scm	2004-10-24 15:19:59.000000000 +0000
-+++ lilypond-2.4.0.new/scm/documentation-lib.scm	2004-11-04 08:33:15.209858888 +0000
-@@ -139,7 +139,7 @@
+ @ifhtml
+--- lilypond-2.6.4/scm/documentation-lib.scm.orig	2005-06-14 02:44:14.000000000 +0200
++++ lilypond-2.6.4/scm/documentation-lib.scm	2005-10-29 20:44:44.211428920 +0200
+@@ -111,10 +111,10 @@
     "\\input texinfo @c -*-texinfo-*-"
     "\n@setfilename " file-name ".info"
     "\n@settitle " name
@@ -178,18 +165,8 @@
 +   "\n@dircategory Miscellaneous:"
     "\n@direntry"
     ;; prepend GNU for dir, must be unique
-    "\n* GNU " name ": (" file-name ").          " name "."
---- lilypond-2.4.0/Documentation/user/music-glossary.tely	2004-10-28 13:12:35.000000000 +0000
-+++ lilypond-2.4.0.new/Documentation/user/music-glossary.tely	2004-11-04 08:37:16.785133864 +0000
-@@ -3,9 +3,9 @@
- @settitle Music Glossary
- @setfilename music-glosssary.info
- 
--@dircategory GNU music project
-+@dircategory Miscellaneous:
- @direntry
--* Glossary: (lilypond/music-glossary).                  Glossary of music terms.
-+* Glossary: (music-glossary).                  Glossary of music terms.
- @end direntry
- 
- @ifhtml
+-   "\n* GNU " name ": (" file-name ").          " name "."
++   "\n* GNU " name ": (" file-name ").	" name
+    "\n@end direntry\n"
+    "@documentlanguage en\n"
+    "@documentencoding utf-8\n"))
