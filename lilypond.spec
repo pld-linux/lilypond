@@ -5,16 +5,15 @@
 Summary:	Music typesetter
 Summary(pl):	Program do sk³adania nut
 Name:		lilypond
-Version:	2.6.4
+Version:	2.6.5
 Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://lilypond.org/download/v2.6/%{name}-%{version}.tar.gz
-# Source0-md5:	b2df3f75851e7ef3e264570feaa52aa6
+# Source0-md5:	faf24d726b61c92f081ea804f37ef029
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 Patch2:		%{name}-po.patch
-Patch3:		%{name}-fhs.patch
 URL:		http://www.lilypond.org/
 BuildRequires:	automake
 BuildRequires:	bison >= 1.29
@@ -36,13 +35,11 @@ BuildRequires:	tetex-dvips
 BuildRequires:	tetex-fonts-cm
 BuildRequires:	tetex-fonts-cmextra
 BuildRequires:	tetex-fonts-jknappen
-BuildRequires:	tetex-fonts-type1-ec-mftraced
 BuildRequires:	texinfo >= 4.6
 BuildConflicts:	lilypond < 1.6.0
 Requires:	ghostscript >= 8.15
 Requires:	guile >= 5:1.6.5
 Requires:	python >= 2.1
-Requires:	tetex-fonts-type1-ec-mftraced
 Requires:	tetex-format-latex >= 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -95,7 +92,6 @@ Obs³uga plików LilyPonda dla Vima.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 cp -f /usr/share/automake/config.* stepmake/bin
