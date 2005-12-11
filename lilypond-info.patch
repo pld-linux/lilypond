@@ -134,7 +134,7 @@
 +* abc2ly: (lilypond)abc2ly.		Importing ABC
 +* convert-ly: (lilypond)convert-ly.	Older LilyPond versions
 +* etf2ly: (lilypond)etf2ly.		Importing Finale
-+* lilypond-book: (lilypond)LilyPond-book.	Itegrating text and music
++* lilypond-book: (lilypond)LilyPond-book.	Integrating text and music
 +* midi2ly: (lilypond)midi2ly.		Importing MIDI
 +* mup2ly: (lilypond)mup2ly.		Importing Mup
 +* musedata2ly: (lilypond)musedata2ly.	Importing MuseData
