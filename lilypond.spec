@@ -5,15 +5,16 @@
 Summary:	Music typesetter
 Summary(pl):	Program do sk³adania nut
 Name:		lilypond
-Version:	2.6.5
+Version:	2.8.6
 Release:	1
 License:	GPL
 Group:		Applications/Sound
-Source0:	http://lilypond.org/download/v2.6/%{name}-%{version}.tar.gz
-# Source0-md5:	faf24d726b61c92f081ea804f37ef029
+Source0:	http://lilypond.org/download/v2.8/%{name}-%{version}.tar.gz
+# Source0-md5:	e1c2e8c337e7b46e8f4210882597deac
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 Patch2:		%{name}-po.patch
+Patch3:		%{name}-afm.patch
 URL:		http://www.lilypond.org/
 BuildRequires:	automake
 BuildRequires:	bison >= 1.29
@@ -22,6 +23,7 @@ BuildRequires:	fontconfig-devel >= 1:2.2.0
 BuildRequires:	fontforge >= 20050624
 BuildRequires:	gettext-devel
 BuildRequires:	ghostscript >= 8.15
+BuildRequires:	ghostscript-fonts-std
 %{?with_gui:BuildRequires:	gtk+2-devel >= 2:2.4.0}
 BuildRequires:	guile-devel >= 5:1.6.5
 BuildRequires:	kpathsea-devel
@@ -35,7 +37,7 @@ BuildRequires:	tetex-dvips
 BuildRequires:	tetex-fonts-cm
 BuildRequires:	tetex-fonts-cmextra
 BuildRequires:	tetex-fonts-jknappen
-BuildRequires:	texinfo >= 4.6
+BuildRequires:	texinfo >= 4.7
 BuildConflicts:	lilypond < 1.6.0
 Requires:	ghostscript >= 8.15
 Requires:	guile >= 5:1.6.5
@@ -92,6 +94,7 @@ Obs³uga plików LilyPonda dla Vima.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 cp -f /usr/share/automake/config.* stepmake/bin
