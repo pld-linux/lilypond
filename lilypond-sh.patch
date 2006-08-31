@@ -1,11 +1,11 @@
---- lilypond-2.6.4/aclocal.m4.orig	2005-10-09 21:54:56.000000000 +0200
-+++ lilypond-2.6.4/aclocal.m4	2005-10-29 23:57:24.621979384 +0200
-@@ -424,7 +424,7 @@
- EOF
- 	FLEXLEXER_PATH=`$CXX -E conftest.cc | \
- 	  sed 's!# 1 "\(.*\)FlexLexer.h"!@FLEXLEXER@\1@@!g' | grep '@@' | \
--	  sed 's!.*@FLEXLEXER@\(.*\)@@.*$!\1!g' ` >& /dev/null
-+	  sed 's!.*@FLEXLEXER@\(.*\)@@.*$!\1!g' ` >/dev/null 2>&1
- 	rm conftest.cc
- 	AC_SUBST(FLEXLEXER_PATH)
-         AC_MSG_RESULT($FLEXLEXER_PATH)
+--- lilypond-2.8.6/aclocal.m4.orig	2006-08-31 21:59:48.001724000 +0200
++++ lilypond-2.8.6/aclocal.m4	2006-08-31 21:59:39.461190250 +0200
+@@ -111,7 +111,7 @@
+     num=`STEPMAKE_NUMERIC_VERSION($ver)`
+     req=`STEPMAKE_NUMERIC_VERSION($3)`
+     AC_MSG_RESULT([$ver])
+-    if test "$num" -lt "$req"; then
++    if /usr/bin/test "$num" -lt "$req"; then
+ 	STEPMAKE_ADD_ENTRY($2, ["$r >= $3 (installed: $ver)"])
+     fi
+     vervar="`echo $1 | tr '[a-z]' '[A-Z]'`_VERSION"
