@@ -102,7 +102,7 @@ cp -f /usr/share/automake/config.* stepmake/bin
 %configure \
 	%{?debug:--disable-optimising} \
 	%{?with_gui:--enable-gui}
-%{__make}
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
