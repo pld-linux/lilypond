@@ -1,5 +1,5 @@
---- lilypond-2.8.6/po/it.po.orig	2006-03-20 12:55:22.000000000 +0100
-+++ lilypond-2.8.6/po/it.po	2006-08-31 21:43:36.264994250 +0200
+--- lilypond-2.10.0/po/it.po.orig	2006-11-10 14:44:26.000000000 +0100
++++ lilypond-2.10.0/po/it.po	2006-11-20 20:33:38.826496000 +0100
 @@ -2,14 +2,17 @@
  # Tineke de Munnik <jantien@xs4all.nl>, 1998.
  # Modified by Maurizio Umberto Puxeddu <umbpux@tin.it>, Feb1999
@@ -7,9 +7,9 @@
 -#, fuzzy
  msgid ""
  msgstr ""
++"Project-Id-Version: lilypond 2.10.0\n"
  "Report-Msgid-Bugs-To: \n"
-+"Project-Id-Version: lilypond 2.8.6\n"
- "POT-Creation-Date: 2006-03-20 12:53+0100\n"
+ "POT-Creation-Date: 2006-10-08 16:22+0200\n"
 +"PO-Revision-Date: 1998-05-30 00:17:12+0200\n"
 +"Last-Translator: <jantien@xs4all.nl>\n"
 +"Language-Team: Italian\n"
@@ -21,23 +21,3 @@
  "Xgettext-Options: --c++ --default-domain=lilypond --join --output-dir=../po/"
  "out --add-comments --keyword=_ --keyword=_f\n"
  "Files: bow.cc int.cc\n"
-diff -u lilypond-2.2.4/po.orig/ru.po lilypond-2.2.4/po/ru.po
---- lilypond-2.2.4/po.orig/ru.po	Thu Oct 30 00:32:56 2003
-+++ lilypond-2.2.4/po/ru.po	Tue Aug  3 16:29:45 2004
-@@ -2,7 +2,6 @@
- # Copyright (C) YEAR Free Software Foundation, Inc.
- # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
- #
--#, fuzzy
- msgid ""
- msgstr ""
- "Project-Id-Version: PACKAGE VERSION\n"
-@@ -12,7 +11,7 @@
- "Language-Team: Russian <ru@li.org>\n"
- "MIME-Version: 1.0\n"
- "Content-Type: text/plain; charset=koi8-r\n"
--"Content-Transfer-Encoding: ENCODING\n"
-+"Content-Transfer-Encoding: 8bit\n"
- 
- #. this is where special info is often stored
- #. ###############################################################
