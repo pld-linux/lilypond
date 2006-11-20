@@ -5,12 +5,12 @@
 Summary:	Music typesetter
 Summary(pl):	Program do sk³adania nut
 Name:		lilypond
-Version:	2.8.7
+Version:	2.10.0
 Release:	1
 License:	GPL
 Group:		Applications/Sound
-Source0:	http://lilypond.org/download/v2.8/%{name}-%{version}.tar.gz
-# Source0-md5:	f2513f545adb211a256c21cc6b28ab3a
+Source0:	http://lilypond.org/download/v2.10/%{name}-%{version}.tar.gz
+# Source0-md5:	82e4487c5c1fa1d2e478d5974a3630df
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 Patch2:		%{name}-po.patch
@@ -45,7 +45,6 @@ Requires:	python >= 2.1
 Requires:	tetex-format-latex >= 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_localedir	%{_prefix}/share/locale
 %define		texmfdir	/usr/share/texmf
 %define		texfontsdir	%{texmfdir}/fonts
 
