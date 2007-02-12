@@ -3,7 +3,7 @@
 %bcond_with	gui	# enable experimental GUI
 #
 Summary:	Music typesetter
-Summary(pl):	Program do sk≥adania nut
+Summary(pl.UTF-8):   Program do sk≈Çadania nut
 Name:		lilypond
 Version:	2.10.0
 Release:	1
@@ -55,16 +55,16 @@ classical music, but you can also print pop-songs. With LilyPond we
 hope to make music publication software available to anyone on the
 internet.
 
-%description -l pl
-LilyPond jest programem do sk≥adu muzycznego. Produkuje piÍkne
-partytury uøywaj±c jÍzyka wysokiego poziomu jako wej∂cie. S≥uøy przede
-wszystkim do sk≥adania nut muzyki klasycznej, ale moøna drukowaÊ takøe
-piosenki pop. Autorzy udostÍpniaj± LilyPond z nadziej± dostarczenia
+%description -l pl.UTF-8
+LilyPond jest programem do sk≈Çadu muzycznego. Produkuje piƒôkne
+partytury u≈ºywajƒÖc jƒôzyka wysokiego poziomu jako wej≈õcie. S≈Çu≈ºy przede
+wszystkim do sk≈Çadania nut muzyki klasycznej, ale mo≈ºna drukowaƒá tak≈ºe
+piosenki pop. Autorzy udostƒôpniajƒÖ LilyPond z nadziejƒÖ dostarczenia
 wszystkim oprogramowania do publikacji muzycznych.
 
 %package -n emacs-lilypond-mode-pkg
 Summary:	LilyPond mode for Emacs
-Summary(pl):	Tryb edycji plikÛw LilyPond dla Emacsa
+Summary(pl.UTF-8):   Tryb edycji plik√≥w LilyPond dla Emacsa
 Group:		Applications/Editors/Emacs
 Requires:	%{name} = %{version}-%{release}
 Requires:	emacs
@@ -72,12 +72,12 @@ Requires:	emacs
 %description -n emacs-lilypond-mode-pkg
 LilyPond mode for Emacs.
 
-%description -n emacs-lilypond-mode-pkg -l pl
-Tryb edycji plikÛw LilyPond dla Emacsa.
+%description -n emacs-lilypond-mode-pkg -l pl.UTF-8
+Tryb edycji plik√≥w LilyPond dla Emacsa.
 
 %package -n vim-syntax-lilypond
 Summary:	LilyPond files support for Vim
-Summary(pl):	Obs≥uga plikÛw LilyPonda dla Vima
+Summary(pl.UTF-8):   Obs≈Çuga plik√≥w LilyPonda dla Vima
 Group:		Applications/Editors/Vim
 Requires:	%{name} = %{version}-%{release}
 Requires:	vim >= 4:6.4.001-2
@@ -85,8 +85,8 @@ Requires:	vim >= 4:6.4.001-2
 %description -n vim-syntax-lilypond
 LilyPond files support for Vim.
 
-%description -n vim-syntax-lilypond -l pl
-Obs≥uga plikÛw LilyPonda dla Vima.
+%description -n vim-syntax-lilypond -l pl.UTF-8
+Obs≈Çuga plik√≥w LilyPonda dla Vima.
 
 %prep
 %setup -q
