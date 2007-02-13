@@ -3,7 +3,7 @@
 %bcond_with	gui	# enable experimental GUI
 #
 Summary:	Music typesetter
-Summary(pl.UTF-8):   Program do składania nut
+Summary(pl.UTF-8):	Program do składania nut
 Name:		lilypond
 Version:	2.10.0
 Release:	1
@@ -64,7 +64,7 @@ wszystkim oprogramowania do publikacji muzycznych.
 
 %package -n emacs-lilypond-mode-pkg
 Summary:	LilyPond mode for Emacs
-Summary(pl.UTF-8):   Tryb edycji plików LilyPond dla Emacsa
+Summary(pl.UTF-8):	Tryb edycji plików LilyPond dla Emacsa
 Group:		Applications/Editors/Emacs
 Requires:	%{name} = %{version}-%{release}
 Requires:	emacs
@@ -77,7 +77,7 @@ Tryb edycji plików LilyPond dla Emacsa.
 
 %package -n vim-syntax-lilypond
 Summary:	LilyPond files support for Vim
-Summary(pl.UTF-8):   Obsługa plików LilyPonda dla Vima
+Summary(pl.UTF-8):	Obsługa plików LilyPonda dla Vima
 Group:		Applications/Editors/Vim
 Requires:	%{name} = %{version}-%{release}
 Requires:	vim >= 4:6.4.001-2
