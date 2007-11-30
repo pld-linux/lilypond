@@ -5,12 +5,12 @@
 Summary:	Music typesetter
 Summary(pl.UTF-8):	Program do składania nut
 Name:		lilypond
-Version:	2.10.0
+Version:	2.10.33
 Release:	1
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://lilypond.org/download/v2.10/%{name}-%{version}.tar.gz
-# Source0-md5:	82e4487c5c1fa1d2e478d5974a3630df
+# Source0-md5:	86a67fcc404e942be723f8a72988b286
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 Patch2:		%{name}-po.patch
@@ -25,11 +25,11 @@ BuildRequires:	gettext-devel
 BuildRequires:	ghostscript >= 8.15
 BuildRequires:	ghostscript-fonts-std
 %{?with_gui:BuildRequires:	gtk+2-devel >= 2:2.4.0}
-BuildRequires:	guile-devel >= 5:1.6.5
+BuildRequires:	guile-devel >= 5:1.6.7
 BuildRequires:	kpathsea-devel
 BuildRequires:	libltdl-devel
 BuildRequires:	libstdc++-devel >= 5:3.3
-BuildRequires:	mftrace >= 1.1.9
+BuildRequires:	mftrace >= 1.1.19
 BuildRequires:	pango-devel >= 1.6.0
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	python-devel >= 2.1
@@ -114,15 +114,13 @@ find $RPM_BUILD_ROOT -name fonts.cache-1 | xargs rm -f
 
 # for dvips
 mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/dvips \
-      $RPM_BUILD_ROOT%{texmfdir}/dvips/lilypond
+	$RPM_BUILD_ROOT%{texmfdir}/dvips/lilypond
 # ?
 mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/source \
-      $RPM_BUILD_ROOT%{texfontsdir}/source/lilypond
+	$RPM_BUILD_ROOT%{texfontsdir}/source/lilypond
 # for latex and dvips
-mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/tfm \
-      $RPM_BUILD_ROOT%{texfontsdir}/tfm/lilypond
 mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/tex \
-      $RPM_BUILD_ROOT%{texmfdir}/tex/lilypond
+	$RPM_BUILD_ROOT%{texmfdir}/tex/lilypond
 # both for lilypond and dvips
 ln -sf %{_datadir}/lilypond/%{version}/fonts/type1 \
 	$RPM_BUILD_ROOT%{texfontsdir}/type1/lilypond
@@ -176,7 +174,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %{texfontsdir}/source/lilypond
-%{texfontsdir}/tfm/lilypond
 %{texfontsdir}/type1/lilypond
 %{texmfdir}/dvips/lilypond
 %{texmfdir}/dvips/misc/*.ps
