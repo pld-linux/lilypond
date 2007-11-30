@@ -15,6 +15,7 @@ Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 Patch2:		%{name}-po.patch
 Patch3:		%{name}-afm.patch
+Patch4:		%{name}-gcc3.patch
 URL:		http://www.lilypond.org/
 BuildRequires:	automake
 BuildRequires:	bison >= 1.29
@@ -94,6 +95,7 @@ Obsługa plików LilyPonda dla Vima.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p0
 
 %build
 cp -f /usr/share/automake/config.* stepmake/bin
