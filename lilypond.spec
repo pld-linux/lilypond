@@ -3,18 +3,19 @@
 %bcond_with	gui	# enable experimental GUI
 #
 Summary:	Music typesetter
-Summary(pl):	Program do sk³adania nut
+Summary(pl.UTF-8):	Program do skÅ‚adania nut
 Name:		lilypond
-Version:	2.8.7
+Version:	2.10.33
 Release:	1
 License:	GPL
 Group:		Applications/Sound
-Source0:	http://lilypond.org/download/v2.8/%{name}-%{version}.tar.gz
-# Source0-md5:	f2513f545adb211a256c21cc6b28ab3a
+Source0:	http://lilypond.org/download/v2.10/%{name}-%{version}.tar.gz
+# Source0-md5:	86a67fcc404e942be723f8a72988b286
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 Patch2:		%{name}-po.patch
 Patch3:		%{name}-afm.patch
+Patch4:		%{name}-gcc3.patch
 URL:		http://www.lilypond.org/
 BuildRequires:	automake
 BuildRequires:	bison >= 1.29
@@ -25,11 +26,11 @@ BuildRequires:	gettext-devel
 BuildRequires:	ghostscript >= 8.15
 BuildRequires:	ghostscript-fonts-std
 %{?with_gui:BuildRequires:	gtk+2-devel >= 2:2.4.0}
-BuildRequires:	guile-devel >= 5:1.6.5
+BuildRequires:	guile-devel >= 5:1.6.7
 BuildRequires:	kpathsea-devel
 BuildRequires:	libltdl-devel
 BuildRequires:	libstdc++-devel >= 5:3.3
-BuildRequires:	mftrace >= 1.1.9
+BuildRequires:	mftrace >= 1.1.19
 BuildRequires:	pango-devel >= 1.6.0
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	python-devel >= 2.1
@@ -45,7 +46,6 @@ Requires:	python >= 2.1
 Requires:	tetex-format-latex >= 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_localedir	%{_prefix}/share/locale
 %define		texmfdir	/usr/share/texmf
 %define		texfontsdir	%{texmfdir}/fonts
 
@@ -56,16 +56,16 @@ classical music, but you can also print pop-songs. With LilyPond we
 hope to make music publication software available to anyone on the
 internet.
 
-%description -l pl
-LilyPond jest programem do sk³adu muzycznego. Produkuje piêkne
-partytury u¿ywaj±c jêzyka wysokiego poziomu jako wej¶cie. S³u¿y przede
-wszystkim do sk³adania nut muzyki klasycznej, ale mo¿na drukowaæ tak¿e
-piosenki pop. Autorzy udostêpniaj± LilyPond z nadziej± dostarczenia
+%description -l pl.UTF-8
+LilyPond jest programem do skÅ‚adu muzycznego. Produkuje piÄ™kne
+partytury uÅ¼ywajÄ…c jÄ™zyka wysokiego poziomu jako wejÅ›cie. SÅ‚uÅ¼y przede
+wszystkim do skÅ‚adania nut muzyki klasycznej, ale moÅ¼na drukowaÄ‡ takÅ¼e
+piosenki pop. Autorzy udostÄ™pniajÄ… LilyPond z nadziejÄ… dostarczenia
 wszystkim oprogramowania do publikacji muzycznych.
 
 %package -n emacs-lilypond-mode-pkg
 Summary:	LilyPond mode for Emacs
-Summary(pl):	Tryb edycji plików LilyPond dla Emacsa
+Summary(pl.UTF-8):	Tryb edycji plikÃ³w LilyPond dla Emacsa
 Group:		Applications/Editors/Emacs
 Requires:	%{name} = %{version}-%{release}
 Requires:	emacs
@@ -73,12 +73,12 @@ Requires:	emacs
 %description -n emacs-lilypond-mode-pkg
 LilyPond mode for Emacs.
 
-%description -n emacs-lilypond-mode-pkg -l pl
-Tryb edycji plików LilyPond dla Emacsa.
+%description -n emacs-lilypond-mode-pkg -l pl.UTF-8
+Tryb edycji plikÃ³w LilyPond dla Emacsa.
 
 %package -n vim-syntax-lilypond
 Summary:	LilyPond files support for Vim
-Summary(pl):	Obs³uga plików LilyPonda dla Vima
+Summary(pl.UTF-8):	ObsÅ‚uga plikÃ³w LilyPonda dla Vima
 Group:		Applications/Editors/Vim
 Requires:	%{name} = %{version}-%{release}
 Requires:	vim >= 4:6.4.001-2
@@ -86,8 +86,8 @@ Requires:	vim >= 4:6.4.001-2
 %description -n vim-syntax-lilypond
 LilyPond files support for Vim.
 
-%description -n vim-syntax-lilypond -l pl
-Obs³uga plików LilyPonda dla Vima.
+%description -n vim-syntax-lilypond -l pl.UTF-8
+ObsÅ‚uga plikÃ³w LilyPonda dla Vima.
 
 %prep
 %setup -q
@@ -95,6 +95,7 @@ Obs³uga plików LilyPonda dla Vima.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p0
 
 %build
 cp -f /usr/share/automake/config.* stepmake/bin
@@ -115,15 +116,13 @@ find $RPM_BUILD_ROOT -name fonts.cache-1 | xargs rm -f
 
 # for dvips
 mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/dvips \
-      $RPM_BUILD_ROOT%{texmfdir}/dvips/lilypond
+	$RPM_BUILD_ROOT%{texmfdir}/dvips/lilypond
 # ?
 mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/source \
-      $RPM_BUILD_ROOT%{texfontsdir}/source/lilypond
+	$RPM_BUILD_ROOT%{texfontsdir}/source/lilypond
 # for latex and dvips
-mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/tfm \
-      $RPM_BUILD_ROOT%{texfontsdir}/tfm/lilypond
 mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/tex \
-      $RPM_BUILD_ROOT%{texmfdir}/tex/lilypond
+	$RPM_BUILD_ROOT%{texmfdir}/tex/lilypond
 # both for lilypond and dvips
 ln -sf %{_datadir}/lilypond/%{version}/fonts/type1 \
 	$RPM_BUILD_ROOT%{texfontsdir}/type1/lilypond
@@ -177,7 +176,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %{texfontsdir}/source/lilypond
-%{texfontsdir}/tfm/lilypond
 %{texfontsdir}/type1/lilypond
 %{texmfdir}/dvips/lilypond
 %{texmfdir}/dvips/misc/*.ps
