@@ -28,7 +28,7 @@ BuildRequires:	ghostscript-fonts-std
 BuildRequires:	guile-devel >= 5:1.6.7
 BuildRequires:	kpathsea-devel
 BuildRequires:	libltdl-devel
-BuildRequires:	libstdc++-devel >= 5:3.3
+BuildRequires:	libstdc++-devel >= 5:4.0
 BuildRequires:	mftrace >= 1.1.19
 BuildRequires:	pango-devel >= 1.6.0
 BuildRequires:	pkgconfig >= 1:0.9.0
