@@ -19,6 +19,7 @@ URL:		http://www.lilypond.org/
 BuildRequires:	automake
 BuildRequires:	bison >= 1.29
 BuildRequires:	flex >= 2.5.4a
+BuildRequires:	fontconfig
 BuildRequires:	fontconfig-devel >= 1:2.2.0
 BuildRequires:	fontforge >= 20050624
 BuildRequires:	gettext-devel
