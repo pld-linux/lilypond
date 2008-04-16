@@ -157,14 +157,14 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS.txt ChangeLog DEDICATION NEWS.txt README.txt THANKS
-%attr(755,root,root)%{_bindir}/abc2ly
-%attr(755,root,root)%{_bindir}/convert-ly
-%attr(755,root,root)%{_bindir}/etf2ly
-%attr(755,root,root)%{_bindir}/lilypond
-%attr(755,root,root)%{_bindir}/lilypond-book
-%attr(755,root,root)%{_bindir}/lilypond-invoke-editor
-%attr(755,root,root)%{_bindir}/midi2ly
-%attr(755,root,root)%{_bindir}/musicxml2ly
+%attr(755,root,root) %{_bindir}/abc2ly
+%attr(755,root,root) %{_bindir}/convert-ly
+%attr(755,root,root) %{_bindir}/etf2ly
+%attr(755,root,root) %{_bindir}/lilypond
+%attr(755,root,root) %{_bindir}/lilypond-book
+%attr(755,root,root) %{_bindir}/lilypond-invoke-editor
+%attr(755,root,root) %{_bindir}/midi2ly
+%attr(755,root,root) %{_bindir}/musicxml2ly
 %dir %{_libdir}/lilypond
 %dir %{_libdir}/lilypond/%{version}
 %dir %{_libdir}/lilypond/%{version}/python
