@@ -1,6 +1,9 @@
+# TODO:
+#	- probably gui bcond is meaningless
 #
 # Conditional build:
 %bcond_with	gui	# enable experimental GUI
+%bcond_with	docs	# build docs
 #
 Summary:	Music typesetter
 Summary(pl.UTF-8):	Program do składania nut
@@ -16,6 +19,8 @@ Patch1:		%{name}-sh.patch
 Patch2:		%{name}-po.patch
 Patch3:		%{name}-afm.patch
 URL:		http://www.lilypond.org/
+%{?with_docs:BuildRequires:	ImageMagick}
+%{?with_docs:BuildRequires:	ImageMagick-coder-png}
 BuildRequires:	automake
 BuildRequires:	bison >= 1.29
 BuildRequires:	flex >= 2.5.4a
@@ -31,14 +36,18 @@ BuildRequires:	kpathsea-devel
 BuildRequires:	libltdl-devel
 BuildRequires:	libstdc++-devel >= 5:4.0
 BuildRequires:	mftrace >= 1.1.19
+%{?with_docs:BuildRequires:	netpbm-progs}
 BuildRequires:	pango-devel >= 1.6.0
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	python-devel >= 2.1
+%{?with_docs:BuildRequires:	rsync}
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-fonts-cm
 BuildRequires:	tetex-fonts-cmextra
 BuildRequires:	tetex-fonts-jknappen
+%{?with_docs:BuildRequires:	tetex-latex-bibtex}
 BuildRequires:	texinfo >= 4.7
+%{?with_docs:BuildRequires:	texinfo-texi2dvi}
 BuildConflicts:	lilypond < 1.6.0
 Requires:	ghostscript >= 8.15
 Requires:	guile >= 5:1.6.5
@@ -103,6 +112,7 @@ cp -f /usr/share/automake/config.* stepmake/bin
 	%{?debug:--disable-optimising} \
 	%{?with_gui:--enable-gui}
 %{__make} -j1
+%{?with_docs:%{__make} -j1 web}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -110,6 +120,10 @@ install -d $RPM_BUILD_ROOT{%{texmfdir}/{dvips/misc,tex},%{texfontsdir}/{source,t
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+%if %{with docs}
+%{__make} -j1 web-install \
+	DESTDIR=$RPM_BUILD_ROOT
+%endif
 
 find $RPM_BUILD_ROOT -name fonts.cache-1 | xargs rm -f
 
@@ -188,6 +202,7 @@ rm -rf $RPM_BUILD_ROOT
 %{texmfdir}/tex/lilypond
 
 %{_datadir}/omf/lilypond
+%{?with_docs:/usr/share/doc/lilypond}
 
 %files -n emacs-lilypond-mode-pkg
 %defattr(644,root,root,755)
