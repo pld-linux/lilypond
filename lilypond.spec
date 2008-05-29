@@ -91,7 +91,7 @@ Summary:	LilyPond files support for Vim
 Summary(pl.UTF-8):	Obsługa plików LilyPonda dla Vima
 Group:		Applications/Editors/Vim
 Requires:	%{name} = %{version}-%{release}
-Requires:	vim >= 4:6.4.001-2
+Requires:	vim-rt >= 4:6.4.001-2
 
 %description -n vim-syntax-lilypond
 LilyPond files support for Vim.
