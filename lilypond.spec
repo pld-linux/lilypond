@@ -18,6 +18,7 @@ Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 Patch2:		%{name}-po.patch
 Patch3:		%{name}-afm.patch
+Patch4:		%{name}-gcc3.patch
 URL:		http://www.lilypond.org/
 %{?with_docs:BuildRequires:	ImageMagick}
 %{?with_docs:BuildRequires:	ImageMagick-coder-png}
@@ -34,7 +35,7 @@ BuildRequires:	ghostscript-fonts-std
 BuildRequires:	guile-devel >= 5:1.6.7
 BuildRequires:	kpathsea-devel
 BuildRequires:	libltdl-devel
-BuildRequires:	libstdc++-devel >= 5:4.0
+BuildRequires:	libstdc++-devel >= 5:3.3
 BuildRequires:	mftrace >= 1.1.19
 %{?with_docs:BuildRequires:	netpbm-progs}
 BuildRequires:	pango-devel >= 1.6.0
@@ -104,6 +105,7 @@ Obsługa plików LilyPonda dla Vima.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p0
 
 %build
 cp -f /usr/share/automake/config.* stepmake/bin
