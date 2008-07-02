@@ -19,6 +19,7 @@ Patch1:		%{name}-sh.patch
 Patch2:		%{name}-po.patch
 Patch3:		%{name}-afm.patch
 Patch4:		%{name}-gcc3.patch
+Patch5:		%{name}-gcc43.patch
 URL:		http://www.lilypond.org/
 %{?with_docs:BuildRequires:	ImageMagick}
 %{?with_docs:BuildRequires:	ImageMagick-coder-png}
@@ -106,6 +107,7 @@ Obsługa plików LilyPonda dla Vima.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p0
+%patch5 -p1
 
 %build
 cp -f /usr/share/automake/config.* stepmake/bin
