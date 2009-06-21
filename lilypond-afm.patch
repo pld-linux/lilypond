@@ -1,8 +1,10 @@
 --- lilypond-2.10.0/mf/GNUmakefile.orig	2006-11-10 14:44:26.000000000 +0100
 +++ lilypond-2.10.0/mf/GNUmakefile	2006-11-20 20:37:29.872935500 +0100
-@@ -155,4 +155,4 @@
- $(NCSB_OTFS): $(NCSB_SOURCE_FILES)  $(buildscript-dir)/pfx2ttf.fontforge
+@@ -193,6 +193,6 @@
+ 	      $(auxscript-dir)/pfx2ttf.fontforge
  	$(foreach i, $(basename $(NCSB_SOURCE_FILES)), \
- 		$(FONTFORGE) -script $(buildscript-dir)/pfx2ttf.fontforge \
+ 		$(FONTFORGE) -script $(auxscript-dir)/pfx2ttf.fontforge \
 -			$(i).pfb $(i).afm $(outdir)/ && ) true
 +			$(i).pfb $(dir $(i))afm/$(notdir $(i)).afm $(outdir)/ && ) true
+ 
+ # eof

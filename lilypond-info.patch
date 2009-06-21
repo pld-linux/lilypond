@@ -1,18 +1,18 @@
 --- lilypond-2.10.0/Documentation/user/converters.itely.orig	2006-11-10 14:44:25.000000000 +0100
 +++ lilypond-2.10.0/Documentation/user/converters.itely	2006-11-20 20:07:34.356722750 +0100
-@@ -25,16 +25,16 @@
- 
+@@ -31,16 +31,16 @@
+ bug reports will almost certainly not be resolved.
  
  @menu
 -* Invoking midi2ly::            Importing MIDI.
+-* Invoking musicxml2ly::        Importing MusicXML.
+-* Invoking abc2ly::             Importing ABC.
 -* Invoking etf2ly::             Importing Finale.
--* Invoking musicxml2ly::        
--* Invoking abc2ly::             Importing ABC.      
 +* midi2ly::                     Importing MIDI.
++* musicxml2ly::                 Importing MusicXML.
++* abc2ly::                      Importing ABC.
 +* etf2ly::                      Importing Finale.
-+* musicxml2ly::                 
-+* abc2ly::                      Importing ABC.      
- * Generating LilyPond files::   
+ * Generating LilyPond files::   GUIs, transcribers, and algorithmic composition programs.
  @end menu
  
  
@@ -22,8 +22,26 @@
  @section Invoking @command{midi2ly}
  
  @cindex MIDI
-@@ -121,7 +121,7 @@
+@@ -127,7 +127,7 @@
  to a single duration and add phrase markings or pedal indicators.
+ 
+ 
+-@node Invoking musicxml2ly
++@node musicxml2ly
+ @section Invoking @code{musicxml2ly}
+ 
+ @cindex MusicXML
+@@ -195,7 +195,7 @@
+ @end table
+ 
+ 
+-@node Invoking abc2ly
++@node abc2ly
+ @section Invoking @code{abc2ly}
+ 
+ @cindex ABC
+@@ -260,7 +260,7 @@
+ @command{abc2ly} ignores the ABC beaming.
  
  
 -@node Invoking etf2ly
@@ -31,65 +49,44 @@
  @section Invoking @command{etf2ly}
  
  @cindex ETF
-@@ -160,7 +160,7 @@
- The list of articulation scripts is incomplete.  Empty measures
- confuse @command{etf2ly}.  Sequences of grace notes are ended improperly.
- 
--@node Invoking musicxml2ly
-+@node musicxml2ly
- @section Invoking @code{musicxml2ly}
- 
- @uref{http://@/www.@/recordarde@/.com/xml@/.html,MusicXML} is an XML dialect
-@@ -184,7 +184,7 @@
- print version information.
- @end table
- 
--@node Invoking abc2ly
-+@node abc2ly
- @section Invoking @code{abc2ly}
- 
- @cindex ABC
 --- lilypond-2.10.0/Documentation/user/running.itely.orig	2006-11-10 14:44:25.000000000 +0100
 +++ lilypond-2.10.0/Documentation/user/running.itely	2006-11-20 20:08:46.477230000 +0100
-@@ -20,7 +20,7 @@
- you are unfamiliar with the command-line.
+@@ -50,12 +50,12 @@
+ if you are unfamiliar with the command-line.
  
  @menu
--* Invoking lilypond::           
-+* lilypond::           
- * Notes for the MacOS X app::   
- * Updating files with convert-ly::  
- * Reporting bugs::              
-@@ -29,7 +29,7 @@
- * Point and click::             
+-* Invoking lilypond::
++* lilypond::
+ * Command line options for lilypond::
+ * Environment variables::
  @end menu
  
 -@node Invoking lilypond
 +@node lilypond
- @section Invoking lilypond
- @cindex Invoking LilyPond
- @cindex command line options
+ @subsection Invoking @command{lilypond}
+ 
+ @cindex Invoking @command{lilypond}
 --- lilypond-2.10.0/Documentation/user/lilypond-book.itely.orig	2006-11-10 14:44:25.000000000 +0100
 +++ lilypond-2.10.0/Documentation/user/lilypond-book.itely	2006-11-20 20:09:06.130458250 +0100
-@@ -37,7 +37,7 @@
- * Integrating HTML and music::  
- * Integrating DocBook and music::
- * Music fragment options::      
--* Invoking lilypond-book::      
-+* lilypond-book::      
- * Filename extensions::         
- * Many quotes of a large score::  
- * Inserting LilyPond output into other programs::  
-@@ -299,7 +299,7 @@
+@@ -48,7 +48,7 @@
+ * An example of a musicological document::
+ * Integrating music and text::
+ * Music fragment options::
+-* Invoking lilypond-book::
++* lilypond-book::
+ * Filename extensions::
+ * Alternate methods of mixing text and music::
+ @end menu
+@@ -363,7 +363,7 @@
+ @seealso
+ There are specific @command{lilypond-book} command line options and
+ other details to know when processing @LaTeX{} documents, see
+-@ref{Invoking lilypond-book}.
++@ref{lilypond-book}.
  
- @noindent
- where the @var{file}@command{psfonts} file is obtained from
--@command{lilypond-book}, @xref{Invoking lilypond-book}, for details. PDF
-+@command{lilypond-book}, @xref{lilypond-book}, for details. PDF
- can then be produced with a PostScript to PDF translator like
- @code{ps2pdf} (which is part of GhostScript).  Running @command{dvips}
- will produce some warnings about fonts; these are harmless and may
-@@ -677,7 +677,7 @@
+ 
+ @node Texinfo
+@@ -765,7 +765,7 @@
  @end table
  
  
@@ -98,38 +95,48 @@
  @section Invoking @command{lilypond-book}
  
  @command{lilypond-book} produces a file with one of the following
-@@ -802,7 +802,7 @@
+@@ -953,8 +953,8 @@
  
  You can use any filename extension for the input file, but if you do not
  use the recommended extension for a particular format you may need to
--manually specify the output format.  @xref{Invoking lilypond-book}, for
-+manually specify the output format.  @xref{lilypond-book}, for
- details.  Otherwise, @command{lilypond-book} automatically selects the
- output format based on the input filename's extension.
+-manually specify the output format; for details, see @ref{Invoking
+-lilypond-book}.  Otherwise, @command{lilypond-book} automatically
++manually specify the output format; for details, see @ref{lilypond-book}.
++Otherwise, @command{lilypond-book} automatically
+ selects the output format based on the input filename's extension.
  
+ @quotation
 --- lilypond-2.10.0/Documentation/user/lilypond.tely.orig	2006-11-10 14:44:25.000000000 +0100
 +++ lilypond-2.10.0/Documentation/user/lilypond.tely	2006-11-20 20:15:39.171021750 +0100
-@@ -26,15 +26,15 @@
+@@ -35,19 +35,19 @@
  @c
- @c Info files are installed in subdirectories to allow images to be present. 
- @c 
--@dircategory LilyPond
-+@dircategory LilyPond:
+ @c Info files are no longer installed in a subdirectory, images are
+ @c expected to be found in lilypond/ subdirectory.
+-@dircategory GNU LilyPond --- the music typesetter
++@dircategory GNU LilyPond --- the music typesetter:
  @direntry
--* LilyPond: (lilypond/lilypond).           The GNU music typesetter.
--* abc2ly: (lilypond/lilypond)Invoking abc2ly.          Importing ABC.      
--* convert-ly: (lilypond/lilypond)Invoking convert-ly.  Older LilyPond versions.
--* etf2ly: (lilypond/lilypond)Invoking etf2ly.          Importing Finale.
--* lilypond-book: (lilypond/lilypond)LilyPond-book.     Itegrating text and music.
--* midi2ly: (lilypond/lilypond)Invoking midi2ly.        Importing MIDI.
--* mup2ly: (lilypond/lilypond)Invoking mup2ly.          Importing Mup.
-+* LilyPond: (lilypond/lilypond).	The GNU music typesetter
-+* abc2ly: (lilypond/lilypond)abc2ly.	Importing ABC
-+* convert-ly: (lilypond/lilypond)convert-ly.	Older LilyPond versions
-+* etf2ly: (lilypond/lilypond)etf2ly.	Importing Finale
-+* lilypond-book: (lilypond/lilypond)LilyPond-book.	Itegrating text and music
-+* midi2ly: (lilypond/lilypond)midi2ly.	Importing MIDI
-+* mup2ly: (lilypond/lilypond)mup2ly.	Importing Mup
+-* LilyPond Learning Manual: (lilypond-learning).  Start here.
+-* Music Glossary: (music-glossary).               For non-English users.
+-* LilyPond: (lilypond).                           LilyPond Notation Reference.
+-* LilyPond Internals Reference: (lilypond-internals).  Definitions for tweaking.
+-* LilyPond Application Usage: (lilypond-program). Installing and running applications.
+-* abc2ly: (lilypond-program)Invoking abc2ly.      Importing ABC.      
+-* convert-ly: (lilypond-program)Updating files with convert-ly. Older LilyPond versions.
+-* etf2ly: (lilypond-program)Invoking etf2ly.      Importing Finale.
+-* lilypond-book: (lilypond-program)LilyPond-book. Integrating text and music.
+-* midi2ly: (lilypond-program)Invoking midi2ly.    Importing MIDI.
+-* musicxml2ly: (lilypond-program)Invoking musicxml2ly.  Importing MusicXML.
++* LilyPond Learning Manual: (lilypond-learning).  Start here
++* Music Glossary: (music-glossary).               For non-English users
++* LilyPond: (lilypond).                           LilyPond Notation Reference
++* LilyPond Internals Reference: (lilypond-internals).  Definitions for tweaking
++* LilyPond Application Usage: (lilypond-program). Installing and running applications
++* abc2ly: (lilypond-program)abc2ly.               Importing ABC
++* convert-ly: (lilypond-program)Updating files with convert-ly. Older LilyPond versions
++* etf2ly: (lilypond-program)etf2ly.               Importing Finale
++* lilypond-book: (lilypond-program)LilyPond-book. Integrating text and music
++* midi2ly: (lilypond-program)midi2ly.             Importing MIDI
++* musicxml2ly: (lilypond-program)musicxml2ly.     Importing MusicXML
  @end direntry
  
  @c don't remove this comment.
@@ -147,17 +154,17 @@
  @end direntry
  
  @ifhtml
---- lilypond-2.10.0/Documentation/user/non-music.itely.orig	2006-11-10 14:44:25.000000000 +0100
-+++ lilypond-2.10.0/Documentation/user/non-music.itely	2006-11-20 22:02:52.933106750 +0100
-@@ -178,7 +178,7 @@
- @code{-dclip-systems}. The clips are output as EPS files, and are
+--- lilypond-2.10.0/Documentation/user/input.itely.orig	2006-11-10 14:44:25.000000000 +0100
++++ lilypond-2.10.0/Documentation/user/input.itely	2006-11-20 22:02:52.933106750 +0100
+@@ -1324,7 +1324,7 @@
+ @code{-dclip-systems}.  The clips are output as EPS files, and are
  converted to PDF and PNG if these formats are switched on as well.
  
--For more information on output formats, see @ref{Invoking lilypond}.
-+For more information on output formats, see @ref{lilypond}.
+-For more information on output formats, see @rprogram{Invoking lilypond}.
++For more information on output formats, see @rprogram{lilypond}.
  
- @seealso
- 
+ @node Skipping corrected music
+ @subsection Skipping corrected music
 --- lilypond-2.10.0/scm/documentation-lib.scm.orig	2006-11-10 14:44:26.000000000 +0100
 +++ lilypond-2.10.0/scm/documentation-lib.scm	2006-11-20 20:16:58.303967250 +0100
 @@ -111,10 +111,10 @@
