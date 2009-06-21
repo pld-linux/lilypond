@@ -157,6 +157,9 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/make
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%pre
+test -h %{texmfdir}/dvips/lilypond || rm -rf %{texmfdir}/dvips/lilypond
+
 %post
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
 [ ! -x /usr/bin/texhash ] || /usr/bin/texhash 1>&2
