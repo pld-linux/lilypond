@@ -17,6 +17,8 @@ Source0:	http://lilypond.org/download/v2.12/%{name}-%{version}.tar.gz
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 Patch3:		%{name}-afm.patch
+Patch4:		%{name}-aclocal.patch
+Patch5:		%{name}-bad_cast.patch
 URL:		http://www.lilypond.org/
 %{?with_docs:BuildRequires:	ImageMagick}
 %{?with_docs:BuildRequires:	ImageMagick-coder-png}
@@ -43,19 +45,19 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	python-devel >= 2.4
 %{?with_docs:BuildRequires:	rsync}
-BuildRequires:	tetex-dvips
-BuildRequires:	tetex-fonts-cm
-BuildRequires:	tetex-fonts-cmextra
-BuildRequires:	tetex-fonts-jknappen
-%{?with_docs:BuildRequires:	tetex-latex-bibtex}
-BuildRequires:	tetex-metapost
+BuildRequires:	texlive-dvips
+BuildRequires:	texlive-fonts-cm
+BuildRequires:	texlive-fonts-cmextra
+BuildRequires:	texlive-fonts-jknappen
+%{?with_docs:BuildRequires:	texlive-latex-bibtex}
+BuildRequires:	texlive-metapost
 BuildRequires:	texinfo >= 4.11
 %{?with_docs:BuildRequires:	texinfo-texi2dvi}
 BuildConflicts:	lilypond < 1.6.0
 Requires:	ghostscript >= 8.15
 Requires:	guile >= 5:1.8.2
 Requires:	python >= 2.4
-Requires:	tetex-format-latex >= 1.0
+Requires:	texlive-latex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		texmfdir	%{_datadir}/texmf
@@ -106,6 +108,8 @@ Obsługa plików LilyPonda dla Vima.
 %patch0 -p1
 %patch1 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %build
 cp -f /usr/share/automake/config.* stepmake/bin

@@ -1,0 +1,12 @@
+diff -dur lilypond-2.12.2.orig/aclocal.m4 lilypond-2.12.2/aclocal.m4
+--- lilypond-2.12.2.orig/aclocal.m4	2009-11-28 12:18:30.000000000 +0100
++++ lilypond-2.12.2/aclocal.m4	2009-11-28 12:19:27.000000000 +0100
+@@ -165,6 +165,8 @@
+ 
+ 
+ AC_DEFUN(STEPMAKE_COMPILE, [
++
++    AC_REQUIRE([AC_PROG_CC])
+     # -O is necessary to get inlining
+     CFLAGS=${CFLAGS-""}
+     CXXFLAGS=${CXXFLAGS-$CFLAGS}
