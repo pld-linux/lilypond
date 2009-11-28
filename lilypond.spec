@@ -61,7 +61,8 @@ Requires:	texlive-latex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		texmfdir	%{_datadir}/texmf
-%define		texfontsdir	%{texmfdir}/fonts
+%define		texmfdistdir	%{texmfdir}-dist
+%define		texfontsdir	%{texmfdistdir}/fonts
 
 %description
 LilyPond is a music typesetter. It produces beautiful sheet music
