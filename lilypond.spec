@@ -9,7 +9,7 @@ Summary:	Music typesetter
 Summary(pl.UTF-8):	Program do składania nut
 Name:		lilypond
 Version:	2.12.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://lilypond.org/download/v2.12/%{name}-%{version}.tar.gz
