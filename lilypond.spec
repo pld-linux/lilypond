@@ -3,7 +3,7 @@
 #
 # Conditional build:
 %bcond_with	gui	# enable experimental GUI
-%bcond_with	docs	# build docs
+%bcond_with	doc	# build docs
 #
 Summary:	Music typesetter
 Summary(pl.UTF-8):	Program do składania nut
@@ -20,8 +20,8 @@ Patch3:		%{name}-afm.patch
 Patch4:		%{name}-aclocal.patch
 Patch5:		%{name}-bad_cast.patch
 URL:		http://www.lilypond.org/
-%{?with_docs:BuildRequires:	ImageMagick}
-%{?with_docs:BuildRequires:	ImageMagick-coder-png}
+%{?with_doc:BuildRequires:	ImageMagick}
+%{?with_doc:BuildRequires:	ImageMagick-coder-png}
 BuildRequires:	automake
 BuildRequires:	bison >= 1.29
 BuildRequires:	flex >= 2.5.4a
@@ -31,7 +31,7 @@ BuildRequires:	fontforge >= 20060125
 BuildRequires:	fonts-Type1-urw
 BuildRequires:	gettext-devel >= 0.17
 BuildRequires:	ghostscript >= 8.15
-%{?with_docs:BuildRequires:	ghostscript >= 8.60}
+%{?with_doc:BuildRequires:	ghostscript >= 8.60}
 BuildRequires:	ghostscript-fonts-std
 %{?with_gui:BuildRequires:	gtk+2-devel >= 2:2.4.0}
 BuildRequires:	guile-devel >= 5:1.8.2
@@ -39,20 +39,20 @@ BuildRequires:	kpathsea-devel
 BuildRequires:	libltdl-devel
 BuildRequires:	libstdc++-devel >= 5:3.4
 BuildRequires:	mftrace >= 1.1.19
-%{?with_docs:BuildRequires:	netpbm-progs}
+%{?with_doc:BuildRequires:	netpbm-progs}
 BuildRequires:	pango-devel >= 1.12.0
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	python-devel >= 2.4
-%{?with_docs:BuildRequires:	rsync}
+%{?with_doc:BuildRequires:	rsync}
 BuildRequires:	texlive-dvips
 BuildRequires:	texlive-fonts-cm
 BuildRequires:	texlive-fonts-cmextra
 BuildRequires:	texlive-fonts-jknappen
-%{?with_docs:BuildRequires:	texlive-latex-bibtex}
+%{?with_doc:BuildRequires:	texlive-latex-bibtex}
 BuildRequires:	texlive-metapost
 BuildRequires:	texinfo >= 4.11
-%{?with_docs:BuildRequires:	texinfo-texi2dvi}
+%{?with_doc:BuildRequires:	texinfo-texi2dvi}
 BuildConflicts:	lilypond < 1.6.0
 Requires:	ghostscript >= 8.15
 Requires:	guile >= 5:1.8.2
@@ -119,7 +119,7 @@ cp -f /usr/share/automake/config.* stepmake/bin
 	%{?debug:--disable-optimising} \
 	%{?with_gui:--enable-gui}
 %{__make} -j1
-%{?with_docs:%{__make} -j1 web}
+%{?with_doc:%{__make} -j1 web}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -127,7 +127,7 @@ install -d $RPM_BUILD_ROOT{%{texmfdir}/{dvips,tex},%{texfontsdir}/{source,tfm,ty
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-%if %{with docs}
+%if %{with doc}
 %{__make} -j1 web-install \
 	DESTDIR=$RPM_BUILD_ROOT
 %endif
@@ -211,7 +211,7 @@ test -h %{texmfdir}/dvips/lilypond || rm -rf %{texmfdir}/dvips/lilypond
 %{texmfdir}/tex/lilypond
 
 %{_datadir}/omf/lilypond
-%{?with_docs:/usr/share/doc/lilypond}
+%{?with_doc:/usr/share/doc/lilypond}
 
 %files -n emacs-lilypond-mode-pkg
 %defattr(644,root,root,755)
