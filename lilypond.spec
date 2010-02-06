@@ -20,8 +20,9 @@ Patch3:		%{name}-afm.patch
 Patch4:		%{name}-aclocal.patch
 Patch5:		%{name}-bad_cast.patch
 URL:		http://www.lilypond.org/
-%{?with_doc:BuildRequires:	ImageMagick}
 %{?with_doc:BuildRequires:	ImageMagick-coder-png}
+%{?with_doc:BuildRequires:	ImageMagick}
+BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison >= 1.29
 BuildRequires:	flex >= 2.5.4a
@@ -38,21 +39,23 @@ BuildRequires:	guile-devel >= 5:1.8.2
 BuildRequires:	kpathsea-devel
 BuildRequires:	libltdl-devel
 BuildRequires:	libstdc++-devel >= 5:3.4
-BuildRequires:	mftrace >= 1.1.19
+#BuildRequires:	mftrace >= 1.1.19
 %{?with_doc:BuildRequires:	netpbm-progs}
 BuildRequires:	pango-devel >= 1.12.0
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	python-devel >= 2.4
+BuildRequires:	python-modules
+BuildRequires:	rpm-pythonprov
 %{?with_doc:BuildRequires:	rsync}
-BuildRequires:	texlive-dvips
-BuildRequires:	texlive-fonts-cm
-BuildRequires:	texlive-fonts-cmextra
-BuildRequires:	texlive-fonts-jknappen
-%{?with_doc:BuildRequires:	texlive-latex-bibtex}
-BuildRequires:	texlive-metapost
 BuildRequires:	texinfo >= 4.11
 %{?with_doc:BuildRequires:	texinfo-texi2dvi}
+#BuildRequires:	texlive-dvips
+#BuildRequires:	texlive-fonts-cm
+#BuildRequires:	texlive-fonts-cmextra
+#BuildRequires:	texlive-fonts-jknappen
+%{?with_doc:BuildRequires:	texlive-latex-bibtex}
+BuildRequires:	texlive-metapost
 BuildConflicts:	lilypond < 1.6.0
 Requires:	ghostscript >= 8.15
 Requires:	guile >= 5:1.8.2
