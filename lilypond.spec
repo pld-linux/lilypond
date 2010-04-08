@@ -56,6 +56,7 @@ BuildRequires:	texinfo >= 4.11
 #BuildRequires:	texlive-fonts-jknappen
 %{?with_doc:BuildRequires:	texlive-latex-bibtex}
 BuildRequires:	texlive-metapost
+BuildRequires:	t1utils
 BuildConflicts:	lilypond < 1.6.0
 Requires:	ghostscript >= 8.15
 Requires:	guile >= 5:1.8.2
