@@ -9,7 +9,7 @@ Summary:	Music typesetter
 Summary(pl.UTF-8):	Program do składania nut
 Name:		lilypond
 Version:	2.12.2
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Sound
 Source0:	http://lilypond.org/download/v2.12/%{name}-%{version}.tar.gz
@@ -50,12 +50,17 @@ BuildRequires:	rpm-pythonprov
 %{?with_doc:BuildRequires:	rsync}
 BuildRequires:	texinfo >= 4.11
 %{?with_doc:BuildRequires:	texinfo-texi2dvi}
+%if "%{pld_release}" != "th"
+%{?with_doc:BuildRequires:	tetex-latex-bibtex}
+BuildRequires:	tetex-metapost
+%else
 #BuildRequires:	texlive-dvips
 #BuildRequires:	texlive-fonts-cm
 #BuildRequires:	texlive-fonts-cmextra
 #BuildRequires:	texlive-fonts-jknappen
 %{?with_doc:BuildRequires:	texlive-latex-bibtex}
 BuildRequires:	texlive-metapost
+%endif
 BuildRequires:	t1utils
 BuildConflicts:	lilypond < 1.6.0
 Requires:	ghostscript >= 8.15
