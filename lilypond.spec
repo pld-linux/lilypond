@@ -8,17 +8,16 @@
 Summary:	Music typesetter
 Summary(pl.UTF-8):	Program do składania nut
 Name:		lilypond
-Version:	2.12.2
-Release:	7
+Version:	2.14.2
+Release:	0.1
 License:	GPL
 Group:		Applications/Sound
-Source0:	http://lilypond.org/download/v2.12/%{name}-%{version}.tar.gz
-# Source0-md5:	681dfbecf8a3710d1400cf9488be716b
+Source0:	http://download.linuxaudio.org/lilypond/sources/v2.14/%{name}-%{version}.tar.gz
+# Source0-md5:	4053a19e03181021893981280feb9aaa
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 Patch3:		%{name}-afm.patch
 Patch4:		%{name}-aclocal.patch
-Patch5:		%{name}-bad_cast.patch
 URL:		http://www.lilypond.org/
 %{?with_doc:BuildRequires:	ImageMagick-coder-png}
 %{?with_doc:BuildRequires:	ImageMagick}
@@ -123,11 +122,10 @@ Obsługa plików LilyPonda dla Vima.
 
 %prep
 %setup -q
-%patch0 -p1
+#%%patch0 -p1
 %patch1 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
 
 %build
 cp -f /usr/share/automake/config.* stepmake/bin
