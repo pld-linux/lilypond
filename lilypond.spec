@@ -49,17 +49,12 @@ BuildRequires:	rpm-pythonprov
 %{?with_doc:BuildRequires:	rsync}
 BuildRequires:	texinfo >= 4.11
 %{?with_doc:BuildRequires:	texinfo-texi2dvi}
-%if "%{pld_release}" != "th"
-%{?with_doc:BuildRequires:	tetex-latex-bibtex}
-BuildRequires:	tetex-metapost
-%else
 #BuildRequires:	texlive-dvips
 #BuildRequires:	texlive-fonts-cm
 #BuildRequires:	texlive-fonts-cmextra
 #BuildRequires:	texlive-fonts-jknappen
 %{?with_doc:BuildRequires:	texlive-latex-bibtex}
 BuildRequires:	texlive-metapost
-%endif
 BuildRequires:	t1utils
 BuildConflicts:	lilypond < 1.6.0
 Requires:	ghostscript >= 8.15
