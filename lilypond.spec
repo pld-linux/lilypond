@@ -29,7 +29,7 @@ BuildRequires:	fontconfig
 BuildRequires:	fontconfig-devel >= 1:2.2.0
 BuildRequires:	fontforge >= 20060125
 BuildRequires:	fonts-Type1-urw
-BuildRequires:	gettext-devel >= 0.17
+BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	ghostscript >= 8.15
 %{?with_doc:BuildRequires:	ghostscript >= 8.60}
 BuildRequires:	ghostscript-fonts-std
