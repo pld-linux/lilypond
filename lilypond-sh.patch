@@ -1,6 +1,7 @@
---- lilypond-2.8.6/aclocal.m4.orig	2006-08-31 21:59:48.001724000 +0200
-+++ lilypond-2.8.6/aclocal.m4	2006-08-31 21:59:39.461190250 +0200
-@@ -111,7 +111,7 @@
+diff -dur lilypond-2.18.2.orig/aclocal.m4 lilypond-2.18.2/aclocal.m4
+--- lilypond-2.18.2.orig/aclocal.m4	2014-03-17 16:29:16.000000000 +0100
++++ lilypond-2.18.2/aclocal.m4	2015-12-12 12:43:09.096299573 +0100
+@@ -116,7 +116,7 @@
      num=`STEPMAKE_NUMERIC_VERSION($ver)`
      req=`STEPMAKE_NUMERIC_VERSION($3)`
      AC_MSG_RESULT([$ver])

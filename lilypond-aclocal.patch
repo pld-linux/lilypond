@@ -1,5 +1,6 @@
---- lilypond-2.14.2/aclocal.m4~	2012-01-23 11:18:43.822005891 +0100
-+++ lilypond-2.14.2/aclocal.m4	2012-01-23 11:19:59.781395434 +0100
+diff -dur lilypond-2.18.2.orig/aclocal.m4 lilypond-2.18.2/aclocal.m4
+--- lilypond-2.18.2.orig/aclocal.m4	2015-12-12 12:43:41.336483770 +0100
++++ lilypond-2.18.2/aclocal.m4	2015-12-12 12:44:44.236894773 +0100
 @@ -168,6 +168,7 @@
  ])
  

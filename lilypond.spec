@@ -1,70 +1,67 @@
-# TODO:
-#	- probably gui bcond is meaningless
 #
 # Conditional build:
-%bcond_with	gui	# enable experimental GUI
 %bcond_with	doc	# build docs
 #
 Summary:	Music typesetter
 Summary(pl.UTF-8):	Program do składania nut
 Name:		lilypond
-Version:	2.14.2
+Version:	2.19.33
 Release:	0.1
 License:	GPL
 Group:		Applications/Sound
-Source0:	http://download.linuxaudio.org/lilypond/sources/v2.14/%{name}-%{version}.tar.gz
-# Source0-md5:	4053a19e03181021893981280feb9aaa
+Source0:	http://download.linuxaudio.org/lilypond/sources/v2.19/%{name}-%{version}.tar.gz
+# Source0-md5:	942ac963423b08903d0df21fb22fbe70
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
-Patch3:		%{name}-afm.patch
-Patch4:		%{name}-aclocal.patch
+Patch2:		%{name}-afm.patch
+Patch3:		%{name}-aclocal.patch
 URL:		http://www.lilypond.org/
-%{?with_doc:BuildRequires:	ImageMagick-coder-png}
-%{?with_doc:BuildRequires:	ImageMagick}
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison >= 1.29
 BuildRequires:	flex >= 2.5.4a
 BuildRequires:	fontconfig
-BuildRequires:	fontconfig-devel >= 1:2.2.0
-BuildRequires:	fontforge >= 20060125
+BuildRequires:	fontconfig-devel >= 1:2.4.0
+BuildRequires:	fontforge >= 20110222
+BuildRequires:	fonts-TTF-DejaVu
 BuildRequires:	fonts-Type1-urw
+BuildRequires:	freetype >= 1:2.1.10
 BuildRequires:	gettext-tools >= 0.17
-BuildRequires:	ghostscript >= 8.15
-%{?with_doc:BuildRequires:	ghostscript >= 8.60}
 BuildRequires:	ghostscript-fonts-std
-%{?with_gui:BuildRequires:	gtk+2-devel >= 2:2.4.0}
-BuildRequires:	guile-devel >= 5:1.8.2
+BuildRequires:	guile-devel >= 5:2.0.0
 BuildRequires:	kpathsea-devel
-BuildRequires:	libltdl-devel
 BuildRequires:	libstdc++-devel >= 5:3.4
-#BuildRequires:	mftrace >= 1.1.19
-%{?with_doc:BuildRequires:	netpbm-progs}
 BuildRequires:	pango-devel >= 1.12.0
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.9.0
-BuildRequires:	python-devel >= 2.4
+BuildRequires:	python-devel >= 1:2.4
 BuildRequires:	python-modules
 BuildRequires:	rpm-pythonprov
-%{?with_doc:BuildRequires:	rsync}
-BuildRequires:	texinfo >= 4.11
-%{?with_doc:BuildRequires:	texinfo-texi2dvi}
-#BuildRequires:	texlive-dvips
-#BuildRequires:	texlive-fonts-cm
-#BuildRequires:	texlive-fonts-cmextra
-#BuildRequires:	texlive-fonts-jknappen
-%{?with_doc:BuildRequires:	texlive-latex-bibtex}
-BuildRequires:	texlive-metapost
 BuildRequires:	t1utils
-BuildConflicts:	lilypond < 1.6.0
-Requires:	ghostscript >= 8.15
-Requires:	guile >= 5:1.8.2
-Requires:	python >= 2.4
-%if "%{pld_release}" != "th"
-Requires:	tetex-latex
-%else
-Requires:	texlive-latex
+BuildRequires:	texinfo >= 4.11
+BuildRequires:	texlive-fonts-other
+BuildRequires:	texlive-metapost
+%if %{with doc}
+BuildRequires:	ImageMagick
+BuildRequires:	ImageMagick-coder-png
+BuildRequires:	dblatex
+BuildRequires:	ghostscript >= 8.60
+BuildRequires:	guile1 >= 1.8.0
+BuildRequires:	netpbm-progs
+BuildRequires:	rsync
+BuildRequires:	texi2html
+BuildRequires:	texinfo
+BuildRequires:	texinfo-texi2dvi
+BuildRequires:	texlive
+BuildRequires:	texlive-fonts-lh
+BuildRequires:	texlive-format-pdflatex
+BuildRequires:	texlive-latex-bibtex
+BuildRequires:	zip
 %endif
+BuildConflicts:	lilypond < 1.6.0
+Requires:	fonts-TTF-DejaVu
+Requires:	ghostscript >= 8.60
+Requires:	python-modules >= 1:2.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		texmfdir	%{_datadir}/texmf
@@ -119,17 +116,17 @@ Obsługa plików LilyPonda dla Vima.
 %setup -q
 #%%patch0 -p1
 %patch1 -p1
+#%patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 %build
-cp -f /usr/share/automake/config.* stepmake/bin
 %{__autoconf}
 %configure \
 	%{?debug:--disable-optimising} \
-	%{?with_gui:--enable-gui}
+	--enable-guile2 \
+	--with-texgyre-dir=/usr/share/texmf-dist/fonts/opentype/public/tex-gyre/ \
+	%{__enable_disable doc documentation}
 %{__make} -j1
-%{?with_doc:%{__make} -j1 web}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -137,10 +134,13 @@ install -d $RPM_BUILD_ROOT{%{texmfdir}/{dvips,tex},%{texfontsdir}/{source,tfm,ty
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
 %if %{with doc}
-%{__make} -j1 web-install \
-	DESTDIR=$RPM_BUILD_ROOT
+%{__make} -C Documentation omf-local-install \
+	DESTDIR=$RPM_BUILD_ROOT	\
+	local_package_omfdir=%{_datadir}/omf/lilypond
 %endif
+
 cp -aL out/share/lilypond/current/fonts/tfm \
 	$RPM_BUILD_ROOT%{texfontsdir}/tfm/lilypond
 
@@ -177,17 +177,17 @@ test -h %{texmfdir}/dvips/lilypond || rm -rf %{texmfdir}/dvips/lilypond
 
 %post
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
-[ ! -x /usr/bin/texhash ] || /usr/bin/texhash 1>&2
-[ ! -x /usr/bin/scrollkeeper-update ] || /usr/bin/scrollkeeper-update
+[ ! -x %{_bindir}/texhash ] || %{_bindir}/texhash 1>&2
+[ ! -x %{_bindir}/scrollkeeper-update ] || %{_bindir}/scrollkeeper-update
 
 %postun
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
-[ ! -x /usr/bin/texhash ] || /usr/bin/texhash 1>&2
-[ ! -x /usr/bin/scrollkeeper-update ] || /usr/bin/scrollkeeper-update
+[ ! -x %{_bindir}/texhash ] || %{_bindir}/texhash 1>&2
+[ ! -x %{_bindir}/scrollkeeper-update ] || %{_bindir}/scrollkeeper-update
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS.txt DEDICATION NEWS.txt README.txt THANKS
+%doc AUTHORS.txt DEDICATION NEWS.txt README.txt ROADMAP
 %attr(755,root,root) %{_bindir}/abc2ly
 %attr(755,root,root) %{_bindir}/convert-ly
 %attr(755,root,root) %{_bindir}/etf2ly
@@ -211,8 +211,6 @@ test -h %{texmfdir}/dvips/lilypond || rm -rf %{texmfdir}/dvips/lilypond
 %{_datadir}/lilypond/%{version}/python/*.py
 %{_datadir}/lilypond/%{version}/python/*.pyc
 %{_datadir}/lilypond/%{version}/scm
-%{_infodir}/*.info*
-%{_mandir}/man1/*
 
 %{texfontsdir}/source/lilypond
 %{texfontsdir}/tfm/lilypond
@@ -220,8 +218,11 @@ test -h %{texmfdir}/dvips/lilypond || rm -rf %{texmfdir}/dvips/lilypond
 %{texmfdir}/dvips/lilypond
 %{texmfdir}/tex/lilypond
 
+%if %{with doc}
+%{_infodir}/*.info*
+%{_mandir}/man1/*
 %{_datadir}/omf/lilypond
-%{?with_doc:/usr/share/doc/lilypond}
+%endif
 
 %files -n emacs-lilypond-mode-pkg
 %defattr(644,root,root,755)
