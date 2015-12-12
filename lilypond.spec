@@ -13,8 +13,7 @@ Source0:	http://download.linuxaudio.org/lilypond/sources/v2.19/%{name}-%{version
 # Source0-md5:	942ac963423b08903d0df21fb22fbe70
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
-Patch2:		%{name}-afm.patch
-Patch3:		%{name}-aclocal.patch
+Patch2:		%{name}-aclocal.patch
 URL:		http://www.lilypond.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -116,8 +115,7 @@ Obsługa plików LilyPonda dla Vima.
 %setup -q
 #%%patch0 -p1
 %patch1 -p1
-#%patch2 -p1
-%patch3 -p1
+%patch2 -p1
 
 %build
 %{__autoconf}
