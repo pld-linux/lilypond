@@ -1,6 +1,7 @@
 #
 # Conditional build:
-%bcond_with	doc	# build docs
+%bcond_with	guile2	# 'highly experimental' guile2 support
+%bcond_without	doc	# build docs
 #
 Summary:	Music typesetter
 Summary(pl.UTF-8):	Program do składania nut
@@ -27,7 +28,11 @@ BuildRequires:	fonts-Type1-urw
 BuildRequires:	freetype >= 1:2.1.10
 BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	ghostscript-fonts-std
+%if %{with guile2}
 BuildRequires:	guile-devel >= 5:2.0.0
+%else
+BuildRequires:	guile1-devel
+%endif
 BuildRequires:	kpathsea-devel
 BuildRequires:	libstdc++-devel >= 5:3.4
 BuildRequires:	pango-devel >= 1.12.0
@@ -121,7 +126,7 @@ Obsługa plików LilyPonda dla Vima.
 %{__autoconf}
 %configure \
 	%{?debug:--disable-optimising} \
-	--enable-guile2 \
+	%{__enable_disable guile2} \
 	--with-texgyre-dir=/usr/share/texmf-dist/fonts/opentype/public/tex-gyre/ \
 	%{__enable_disable doc documentation}
 %{__make} -j1
