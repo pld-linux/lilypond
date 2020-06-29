@@ -1,26 +1,28 @@
 #
 # Conditional build:
-%bcond_with	guile2	# 'highly experimental' guile2 support
+%bcond_without	guile2	# (experimental) guile2 support
 %bcond_without	doc	# build docs
 #
 Summary:	Music typesetter
 Summary(pl.UTF-8):	Program do składania nut
 Name:		lilypond
-Version:	2.19.33
+# note: 2.20.x is stable, 2.21.x devel
+Version:	2.20.0
 Release:	1
-License:	GPL
+License:	GPL v3+ with font exception
 Group:		Applications/Sound
-Source0:	http://download.linuxaudio.org/lilypond/sources/v2.19/%{name}-%{version}.tar.gz
-# Source0-md5:	942ac963423b08903d0df21fb22fbe70
+Source0:	https://lilypond.org/download/sources/v2.20/%{name}-%{version}.tar.gz
+# Source0-md5:	65da6124713144cc63fe8ec2847ada8e
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 Patch2:		%{name}-aclocal.patch
+Patch3:		%{name}-texi2html.patch
 URL:		http://www.lilypond.org/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
 BuildRequires:	bison >= 1.29
 BuildRequires:	flex >= 2.5.4a
-BuildRequires:	fontconfig
+BuildRequires:	fontconfig >= 1:2.4.0
 BuildRequires:	fontconfig-devel >= 1:2.4.0
 BuildRequires:	fontforge >= 20110222
 BuildRequires:	fonts-TTF-DejaVu
@@ -28,43 +30,47 @@ BuildRequires:	fonts-Type1-urw
 BuildRequires:	freetype >= 1:2.1.10
 BuildRequires:	gettext-tools >= 0.17
 BuildRequires:	ghostscript-fonts-std
+BuildRequires:	glib2-devel >= 1:2.38
 %if %{with guile2}
-BuildRequires:	guile-devel >= 5:2.0.0
+BuildRequires:	guile-devel >= 5:2.0.7
+BuildRequires:	guile-devel < 5:2.3.0
 %else
-BuildRequires:	guile1-devel
+BuildRequires:	guile1-devel >= 1.8.2
 %endif
 BuildRequires:	kpathsea-devel
 BuildRequires:	libstdc++-devel >= 5:3.4
-BuildRequires:	pango-devel >= 1.12.0
+BuildRequires:	pango-devel >= 1:1.38.0
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	python-devel >= 1:2.4
 BuildRequires:	python-modules
 BuildRequires:	rpm-pythonprov
 BuildRequires:	t1utils
-BuildRequires:	texinfo >= 4.11
+BuildRequires:	texinfo >= 6.1
 BuildRequires:	texlive-fonts-other
 BuildRequires:	texlive-metapost
 %if %{with doc}
 BuildRequires:	ImageMagick
 BuildRequires:	ImageMagick-coder-png
-BuildRequires:	dblatex
-BuildRequires:	ghostscript >= 8.60
-BuildRequires:	guile1 >= 1.8.0
+BuildRequires:	dblatex >= 0.1.4
+BuildRequires:	ghostscript >= 9.20
 BuildRequires:	netpbm-progs
 BuildRequires:	rsync
-BuildRequires:	texi2html
-BuildRequires:	texinfo
-BuildRequires:	texinfo-texi2dvi
+BuildRequires:	texi2html >= 1.82
+BuildRequires:	texinfo-texi2dvi >= 6.1
+# `kpsewhich tex epsf`
 BuildRequires:	texlive
+# `kpsewhich -format=mf fikparm`
 BuildRequires:	texlive-fonts-lh
-BuildRequires:	texlive-format-pdflatex
 BuildRequires:	texlive-latex-bibtex
+BuildRequires:	texlive-xetex
 BuildRequires:	zip
 %endif
 BuildConflicts:	lilypond < 1.6.0
 Requires:	fonts-TTF-DejaVu
-Requires:	ghostscript >= 8.60
+Requires:	ghostscript >= 9.20
+Requires:	glib2 >= 1:2.38
+Requires:	pango >= 1:1.38.0
 Requires:	python-modules >= 1:2.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -118,13 +124,15 @@ Obsługa plików LilyPonda dla Vima.
 
 %prep
 %setup -q
-#%%patch0 -p1
+%patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__autoconf}
 %configure \
+	PYTHON=%{__python} \
 	%{?debug:--disable-optimising} \
 	%{__enable_disable guile2} \
 	--with-texgyre-dir=/usr/share/texmf-dist/fonts/opentype/public/tex-gyre/ \
@@ -150,25 +158,21 @@ cp -aL out/share/lilypond/current/fonts/tfm \
 find $RPM_BUILD_ROOT -name fonts.cache-1 | xargs rm -f
 
 # ?
-mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/source \
+%{__mv} $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/fonts/source \
 	$RPM_BUILD_ROOT%{texfontsdir}/source/lilypond
 # for latex and dvips
-mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/tex \
+%{__mv} $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/tex \
 	$RPM_BUILD_ROOT%{texmfdir}/tex/lilypond
 # both for lilypond and dvips
 ln -sf %{_datadir}/lilypond/%{version}/fonts/type1 \
 	$RPM_BUILD_ROOT%{texfontsdir}/type1/lilypond
 ln -sf %{_datadir}/lilypond/%{version}/ps \
 	$RPM_BUILD_ROOT%{texmfdir}/dvips/lilypond
-rm -rf $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/dvips
 
 # vim syntax/etc. files
 install -d $RPM_BUILD_ROOT%{_datadir}/vim
-mv -f $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/vim \
+%{__mv} $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/vim \
 	$RPM_BUILD_ROOT%{_datadir}/vim/vimfiles
-
-# lilypond/stepmake build system - not needed at runtime
-rm -rf $RPM_BUILD_ROOT%{_datadir}/lilypond/%{version}/make
 
 %find_lang %{name}
 
@@ -190,7 +194,7 @@ test -h %{texmfdir}/dvips/lilypond || rm -rf %{texmfdir}/dvips/lilypond
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS.txt DEDICATION NEWS.txt README.txt ROADMAP
+%doc AUTHORS.txt DEDICATION LICENSE* NEWS.txt README.txt ROADMAP
 %attr(755,root,root) %{_bindir}/abc2ly
 %attr(755,root,root) %{_bindir}/convert-ly
 %attr(755,root,root) %{_bindir}/etf2ly
@@ -201,10 +205,6 @@ test -h %{texmfdir}/dvips/lilypond || rm -rf %{texmfdir}/dvips/lilypond
 %attr(755,root,root) %{_bindir}/lilysong
 %attr(755,root,root) %{_bindir}/midi2ly
 %attr(755,root,root) %{_bindir}/musicxml2ly
-%dir %{_libdir}/lilypond
-%dir %{_libdir}/lilypond/%{version}
-%dir %{_libdir}/lilypond/%{version}/python
-%attr(755,root,root) %{_libdir}/lilypond/%{version}/python/midi.so
 %dir %{_datadir}/lilypond
 %dir %{_datadir}/lilypond/%{version}
 %{_datadir}/lilypond/%{version}/fonts
@@ -222,14 +222,24 @@ test -h %{texmfdir}/dvips/lilypond || rm -rf %{texmfdir}/dvips/lilypond
 %{texmfdir}/tex/lilypond
 
 %if %{with doc}
-%{_infodir}/*.info*
-%{_mandir}/man1/*
+%{_infodir}/lilypond-*.info*
+%{_infodir}/music-glossary.info*
+%{_mandir}/man1/abc2ly.1*
+%{_mandir}/man1/convert-ly.1*
+%{_mandir}/man1/etf2ly.1*
+%{_mandir}/man1/lilymidi.1*
+%{_mandir}/man1/lilypond.1*
+%{_mandir}/man1/lilypond-book.1*
+%{_mandir}/man1/lilypond-invoke-editor.1*
+%{_mandir}/man1/lilysong.1*
+%{_mandir}/man1/midi2ly.1*
+%{_mandir}/man1/musicxml2ly.1*
 %{_datadir}/omf/lilypond
 %endif
 
 %files -n emacs-lilypond-mode-pkg
 %defattr(644,root,root,755)
-%{_datadir}/emacs/site-lisp/*.el
+%{_datadir}/emacs/site-lisp/lilypond-*.el
 
 %files -n vim-syntax-lilypond
 %defattr(644,root,root,755)

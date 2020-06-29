@@ -1,12 +1,11 @@
-diff -dur lilypond-2.18.2.orig/aclocal.m4 lilypond-2.18.2/aclocal.m4
---- lilypond-2.18.2.orig/aclocal.m4	2014-03-17 16:29:16.000000000 +0100
-+++ lilypond-2.18.2/aclocal.m4	2015-12-12 12:43:09.096299573 +0100
-@@ -116,7 +116,7 @@
+--- lilypond-2.20.0/aclocal.m4.orig	2020-06-21 17:28:04.690857844 +0200
++++ lilypond-2.20.0/aclocal.m4	2020-06-21 18:15:06.675569841 +0200
+@@ -110,7 +110,7 @@
      num=`STEPMAKE_NUMERIC_VERSION($ver)`
-     req=`STEPMAKE_NUMERIC_VERSION($3)`
+     min=`STEPMAKE_NUMERIC_VERSION($3)`
      AC_MSG_RESULT([$ver])
--    if test "$num" -lt "$req"; then
-+    if /usr/bin/test "$num" -lt "$req"; then
- 	STEPMAKE_ADD_ENTRY($2, ["$r >= $3 (installed: $ver)"])
+-    if test "$num" -lt "$min"; then
++    if /usr/bin/test "$num" -lt "$min"; then
+         STEPMAKE_ADD_ENTRY($2, ["$r >= $3 (installed: $ver)"])
      fi
-     vervar="`echo $1 | tr '[a-z]' '[A-Z]'`_VERSION"
+     if test -n "$4"; then
