@@ -1,0 +1,11 @@
+--- lilypond-2.22.0/mf/invoke-mf2pt1.sh.orig	2021-01-10 15:22:46.000000000 +0100
++++ lilypond-2.22.0/mf/invoke-mf2pt1.sh	2021-04-13 19:14:22.963474099 +0200
+@@ -41,7 +41,7 @@
+ cd $tmp
+ 
+ export MFINPUTS="${srcdir}:..::"
+-export max_print_line=1000
++cp -f ../mf2pt1.mem .
+ 
+ ${mf2pt1} --rounding=0.0001 \
+   --family=$name \

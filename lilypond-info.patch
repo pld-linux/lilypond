@@ -1,60 +1,57 @@
---- lilypond-2.20.0/Documentation/web.texi.orig	2020-03-01 15:00:51.000000000 +0100
-+++ lilypond-2.20.0/Documentation/web.texi	2020-06-28 12:32:17.343854102 +0200
-@@ -58,22 +58,22 @@
+--- lilypond-2.22.0/Documentation/en/web.texi.orig	2021-04-11 18:33:38.416188626 +0200
++++ lilypond-2.22.0/Documentation/en/web.texi	2021-04-11 18:53:43.506326759 +0200
+@@ -49,30 +49,26 @@
  
  @c Info files are no longer installed in a subdirectory, images are
  @c expected to be found in lilypond/ subdirectory.
--@dircategory GNU LilyPond --- the music typesetter
-+@dircategory GNU LilyPond:
+-@dircategory LilyPond -- the music typesetter
++@dircategory LilyPond:
  @direntry
--* LilyPond Learning Manual: (lilypond-learning).  Start here.
--* Music Glossary: (music-glossary).               For non-English users.
--* LilyPond: (lilypond-notation).                           LilyPond Notation Reference.
--* LilyPond Snippets: (lilypond-snippets).         Short tricks, tips, and examples.
--* LilyPond Internals Reference: (lilypond-internals).  Definitions for tweaking.
--* LilyPond Application Usage: (lilypond-usage). Installing and running applications.
--* LilyPond Website: (lilypond-web).    Preview of new website.
--* lilypond: (lilypond-usage)Running lilypond.      Invoking the LilyPond program.
--* abc2ly: (lilypond-usage)Invoking abc2ly.      Importing ABC.
--* convert-ly: (lilypond-usage)Updating files with convert-ly. Older LilyPond versions.
--* etf2ly: (lilypond-usage)Invoking etf2ly.      Importing Finale.
--* lilypond-book: (lilypond-usage)lilypond-book. Integrating text and music.
--* midi2ly: (lilypond-usage)Invoking midi2ly.    Importing MIDI.
--* musicxml2ly: (lilypond-usage)Invoking musicxml2ly.  Importing MusicXML.
-+* LilyPond Learning Manual: (lilypond-learning).	Start here
-+* Music Glossary: (music-glossary).			For non-English users
-+* LilyPond: (lilypond-notation).			LilyPond Notation Reference
-+* LilyPond Snippets: (lilypond-snippets).		Short tricks, tips, and examples
-+* LilyPond Internals Reference: (lilypond-internals).	Definitions for tweaking
-+* LilyPond Application Usage: (lilypond-usage).		Installing and running applications
-+* LilyPond Website: (lilypond-web).			Preview of new website
-+* lilypond: (lilypond-usage)lilypond.			Invoking the LilyPond program
-+* abc2ly: (lilypond-usage)abc2ly.			Importing ABC
-+* convert-ly: (lilypond-usage)convert-ly.		Older LilyPond versions
-+* etf2ly: (lilypond-usage)etf2ly.			Importing Finale
-+* lilypond-book: (lilypond-usage)lilypond-book.		Integrating text and music
-+* midi2ly: (lilypond-usage)midi2ly.			Importing MIDI
-+* musicxml2ly: (lilypond-usage)musicxml2ly.		Importing MusicXML
+-* Changes: (lilypond-changes).          News since version 2.20.
+-* Contributing: (lilypond-contributor). How to contribute to LilyPond.
+-* Essay: (lilypond-essay).              The philosophy behind LilyPond.
+-* Extending: (lilypond-extending).      How to use Scheme in LilyPond.
+-* Internals: (lilypond-internals).      Tweaking reference.
+-* Learning: (lilypond-learning).        Introduction.  Start here.
+-* Music Glossary: (music-glossary).     For non-English users.
+-* Notation: (lilypond-notation).        Notation reference.
+-* Snippets: (lilypond-snippets).        Tricks, tips, and examples.
+-* Usage: (lilypond-usage).              How to install and use LilyPond.
+-* Website: (lilypond-web).              Info version of lilypond.org.
+-@end direntry
+-
+-@dircategory LilyPond applications
+-@direntry
+-* abc2ly: (lilypond-usage)Invoking abc2ly.                    Importing ABC files.
+-* convert-ly: (lilypond-usage)Updating files with convert-ly. Handling older LilyPond files.
+-* etf2ly: (lilypond-usage)Invoking etf2ly.                    Importing Finale files.
+-* lilypond-book: (lilypond-usage)lilypond-book.               Integrating text and music.
+-* lilypond: (lilypond-usage)Running lilypond.                 Invoking the LilyPond program.
+-* midi2ly: (lilypond-usage)Invoking midi2ly.                  Importing MIDI files.
+-* musicxml2ly: (lilypond-usage)Invoking musicxml2ly.          Importing MusicXML files.
++* Changes: (lilypond-changes).			News since version 2.20
++* Contributing: (lilypond-contributor).		How to contribute to LilyPond
++* Essay: (lilypond-essay).			The philosophy behind LilyPond
++* Extending: (lilypond-extending).		How to use Scheme in LilyPond
++* Internals: (lilypond-internals).		Tweaking reference
++* Learning: (lilypond-learning).		Introduction.  Start here
++* Music Glossary: (music-glossary).		For non-English users
++* Notation: (lilypond-notation).		Notation reference
++* Snippets: (lilypond-snippets).		Tricks, tips, and examples
++* Usage: (lilypond-usage).			How to install and use LilyPond
++* Website: (lilypond-web).			Info version of lilypond.org
++* abc2ly: (lilypond-usage)abc2ly.		Importing ABC files
++* convert-ly: (lilypond-usage)convert-ly.	Handling older LilyPond files
++* etf2ly: (lilypond-usage)etf2ly.		Importing Finale files
++* lilypond-book: (lilypond-usage)lilypond-book.	Integrating text and music
++* lilypond: (lilypond-usage)lilypond.		Invoking the LilyPond program
++* midi2ly: (lilypond-usage)midi2ly.		Importing MIDI files
++* musicxml2ly: (lilypond-usage)musicxml2ly.	Importing MusicXML files
  @end direntry
  
  
---- lilypond-2.20.0/scm/documentation-lib.scm.orig	2020-03-01 15:00:51.000000000 +0100
-+++ lilypond-2.20.0/scm/documentation-lib.scm	2020-06-28 12:51:02.494425306 +0200
-@@ -137,10 +137,10 @@
-    "\\input texinfo @c -*-texinfo-*-"
-    "\n@setfilename " file-name ".info"
-    "\n@settitle " name
--   "\n@dircategory LilyPond"
-+   "\n@dircategory GNU LilyPond:"
-    "\n@direntry"
-    ;; prepend GNU for dir, must be unique
--   "\n* GNU " name ": (" file-name ").          " name "."
-+   (string-pad-right (string-append "\n* GNU " name ": (" file-name ").") 57) name
-    "\n@end direntry\n"
-    "@documentlanguage en\n"
-    "@documentencoding UTF-8\n"))
---- lilypond-2.20.0/Documentation/usage/running.itely.orig	2020-03-01 15:00:51.000000000 +0100
-+++ lilypond-2.20.0/Documentation/usage/running.itely	2020-06-28 21:12:32.931411423 +0200
+--- lilypond-2.20.0/Documentation/en/usage/running.itely.orig	2020-03-01 15:00:51.000000000 +0100
++++ lilypond-2.20.0/Documentation/en/usage/running.itely	2020-06-28 21:12:32.931411423 +0200
 @@ -11,7 +11,7 @@
  @c \version "2.17.6"
  
@@ -64,8 +61,8 @@
  @chapter Running @command{lilypond}
  
  This chapter details the technicalities of running LilyPond.
---- lilypond-2.20.0/Documentation/usage/external.itely.orig	2020-03-01 15:00:51.000000000 +0100
-+++ lilypond-2.20.0/Documentation/usage/external.itely	2020-06-28 21:13:35.291073592 +0200
+--- lilypond-2.20.0/Documentation/en/usage/external.itely.orig	2020-03-01 15:00:51.000000000 +0100
++++ lilypond-2.20.0/Documentation/en/usage/external.itely	2020-06-28 21:13:35.291073592 +0200
 @@ -423,15 +423,15 @@
  bug reports will almost certainly not be resolved.
  
@@ -114,8 +111,8 @@
  @subsection Invoking @command{etf2ly}
  
  @warning{This is not currently supported and may eventually be removed
---- lilypond-2.20.0/Documentation/usage/updating.itely.orig	2020-03-01 15:00:51.000000000 +0100
-+++ lilypond-2.20.0/Documentation/usage/updating.itely	2020-06-28 21:16:13.556882859 +0200
+--- lilypond-2.20.0/Documentation/en/usage/updating.itely.orig	2020-03-01 15:00:51.000000000 +0100
++++ lilypond-2.20.0/Documentation/en/usage/updating.itely	2020-06-28 21:16:13.556882859 +0200
 @@ -11,7 +11,7 @@
  @c \version "2.16.0"
  
@@ -125,8 +122,8 @@
  @chapter Updating files with @command{convert-ly}
  
  @cindex Updating a LilyPond file
---- lilypond-2.20.0/Documentation/usage/suggestions.itely.orig	2020-03-01 15:00:51.000000000 +0100
-+++ lilypond-2.20.0/Documentation/usage/suggestions.itely	2020-06-29 11:27:27.823523150 +0200
+--- lilypond-2.20.0/Documentation/en/usage/suggestions.itely.orig	2020-03-01 15:00:51.000000000 +0100
++++ lilypond-2.20.0/Documentation/en/usage/suggestions.itely	2020-06-29 11:27:27.823523150 +0200
 @@ -61,7 +61,7 @@
  @strong{Always include a @code{\version} number in your input files} no
  matter how small they are.  This prevents having to remember which
@@ -136,8 +133,8 @@
  @code{\version} statement to be present); or if sending your input files
  to other users (e.g. when asking for help on the mail lists).  Note that
  all of the LilyPond templates contain @code{\version} numbers.
---- lilypond-2.20.0/Documentation/usage.tely.orig	2020-03-01 15:00:51.000000000 +0100
-+++ lilypond-2.20.0/Documentation/usage.tely	2020-06-29 11:28:03.389997136 +0200
+--- lilypond-2.20.0/Documentation/en/usage.tely.orig	2020-03-01 15:00:51.000000000 +0100
++++ lilypond-2.20.0/Documentation/en/usage.tely	2020-06-29 11:28:03.389997136 +0200
 @@ -52,8 +52,8 @@
  @c  maybe add a "Tasks" or "Specific tasks" or something like
  @c  that, after Suggestions  -gp
@@ -149,3 +146,18 @@
  * lilypond-book::                  Integrating text and music.
  * External programs::              Mixing LilyPond and other programs.
  * Suggestions for writing files::  Best practices and effective bug-fixing.
+--- lilypond-2.20.0/scm/documentation-lib.scm.orig	2020-03-01 15:00:51.000000000 +0100
++++ lilypond-2.20.0/scm/documentation-lib.scm	2020-06-28 12:51:02.494425306 +0200
+@@ -137,10 +137,10 @@
+    "\\input texinfo @c -*-texinfo-*-"
+    "\n@setfilename " file-name ".info"
+    "\n@settitle " name
+-   "\n@dircategory LilyPond"
++   "\n@dircategory LilyPond:"
+    "\n@direntry"
+    ;; prepend GNU for dir, must be unique
+-   "\n* GNU " name ": (" file-name ").          " name "."
++   (string-pad-right (string-append "\n* GNU " name ": (" file-name ").") 57) name
+    "\n@end direntry\n"
+    "@documentlanguage en\n"
+    "@documentencoding UTF-8\n"))
