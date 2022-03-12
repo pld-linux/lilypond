@@ -1,0 +1,29 @@
+--- lilypond-2.22.0/aclocal.m4~	2022-03-12 14:29:08.000000000 +0100
++++ lilypond-2.22.0/aclocal.m4	2022-03-12 14:33:10.973679189 +0100
+@@ -541,7 +541,7 @@
+     AC_MSG_CHECKING([for guile])
+     guile="guile"
+     found="no"
+-    for r in $GUILE guile guile2 guile2.2 guile2.0 guile-2.0 \
++    for r in $GUILE guile guile3 guile3.0 guile-3.0 guile2 guile2.2 guile2.0 guile-2.0 \
+              guile1 guile19 guile18 \
+              guile1.9 guile1.8 \
+              guile-1 guile-1.9 guile-1.8; do
+@@ -613,6 +613,9 @@
+         PKG_CHECK_MODULES([GUILE], [$GUILE_FLAVOR],
+                             [true], [GUILE_FLAVOR="missing"])
+     else
++        PKG_CHECK_MODULES([GUILE], [guile-3.0 >= 3.0.0],
++                            [GUILE_FLAVOR="guile-3.0"], [
++            AC_MSG_RESULT([no])
+         PKG_CHECK_MODULES([GUILE], [guile-1.8 >= 1.8.2],
+                             [GUILE_FLAVOR="guile-1.8"], [
+             AC_MSG_RESULT([no])
+@@ -625,6 +628,7 @@
+                     GUILE_FLAVOR="missing"])
+             ])
+         ])
++        ])
+     fi
+ 
+     case "$GUILE_FLAVOR" in

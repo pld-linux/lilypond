@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Program do składania nut
 Name:		lilypond
 # note: 2.22.x is stable, 2.23.x devel
 Version:	2.22.0
-Release:	1
+Release:	2
 License:	GPL v3+ with font exception
 Group:		Applications/Sound
 Source0:	https://lilypond.org/download/sources/v2.22/%{name}-%{version}.tar.gz
@@ -16,6 +16,7 @@ Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 Patch2:		%{name}-aclocal.patch
 Patch3:		%{name}-mf.patch
+Patch4:		guile3.0.patch
 URL:		http://www.lilypond.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
@@ -122,6 +123,7 @@ Obsługa plików LilyPonda dla Vima.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 %{__autoconf}
