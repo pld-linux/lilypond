@@ -1,6 +1,6 @@
---- lilypond-2.22.0/aclocal.m4~	2022-03-12 14:29:08.000000000 +0100
-+++ lilypond-2.22.0/aclocal.m4	2022-03-12 14:33:10.973679189 +0100
-@@ -541,7 +541,7 @@
+--- lilypond-2.22.2/aclocal.m4.orig	2022-03-18 16:13:32.567418463 +0100
++++ lilypond-2.22.2/aclocal.m4	2022-03-18 16:21:08.664947571 +0100
+@@ -505,7 +505,7 @@ AC_DEFUN(STEPMAKE_GUILE, [
      AC_MSG_CHECKING([for guile])
      guile="guile"
      found="no"
@@ -9,7 +9,7 @@
               guile1 guile19 guile18 \
               guile1.9 guile1.8 \
               guile-1 guile-1.9 guile-1.8; do
-@@ -613,6 +613,9 @@
+@@ -577,6 +577,9 @@ AC_DEFUN(STEPMAKE_GUILE_DEVEL, [
          PKG_CHECK_MODULES([GUILE], [$GUILE_FLAVOR],
                              [true], [GUILE_FLAVOR="missing"])
      else
@@ -18,9 +18,9 @@
 +            AC_MSG_RESULT([no])
          PKG_CHECK_MODULES([GUILE], [guile-1.8 >= 1.8.2],
                              [GUILE_FLAVOR="guile-1.8"], [
-             AC_MSG_RESULT([no])
-@@ -625,6 +628,7 @@
-                     GUILE_FLAVOR="missing"])
+             PKG_CHECK_MODULES([GUILE], [guile-2.2 >= 2.2.0],
+@@ -584,6 +587,7 @@ AC_DEFUN(STEPMAKE_GUILE_DEVEL, [
+                 GUILE_FLAVOR="missing"
              ])
          ])
 +        ])

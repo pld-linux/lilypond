@@ -6,18 +6,18 @@ Summary:	Music typesetter
 Summary(pl.UTF-8):	Program do składania nut
 Name:		lilypond
 # note: 2.22.x is stable, 2.23.x devel
-Version:	2.22.0
-Release:	2
+Version:	2.22.2
+Release:	1
 License:	GPL v3+ with font exception
 Group:		Applications/Sound
 Source0:	https://lilypond.org/download/sources/v2.22/%{name}-%{version}.tar.gz
-# Source0-md5:	4b0d869873b0120bda2e8bd94e1a628a
+# Source0-md5:	677e68e728b24f66be5d20072294f41c
 Patch0:		%{name}-info.patch
 Patch1:		%{name}-sh.patch
 Patch2:		%{name}-aclocal.patch
 Patch3:		%{name}-mf.patch
 Patch4:		guile3.0.patch
-URL:		http://www.lilypond.org/
+URL:		https://lilypond.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
 BuildRequires:	bison >= 2.4.1
